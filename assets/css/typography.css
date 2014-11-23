@@ -1,0 +1,16 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+#logo i {
+	font-size: 500%;
+}
+
+#logo h1 {
+	font-size: 250%;
+}
+
+#logo p {
+	font-size: 80%;
+	padding: 2% 0;
+}

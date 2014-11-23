@@ -1,0 +1,25 @@
+<html ng-app="Wardoo">
+	<head>
+		<meta charset="utf-8" />
+		<title>Wardoo</title>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/typography.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/colors.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/base.css" />
+	</head>
+	<body>
+		<aside id="left-sidebar" class="col-md-3" ng-include="'app/shared/sidebar/sidebarView.html'"></aside>
+		<main id="site-main" class="col-md-9" ng-include="'app/components/home/homeView.html'"></main>
+		
+		<script src="assets/libs/angular/angular.min.js"></script>
+		<script src="assets/libs/angular/angular-route.min.js"></script>
+		<script src="assets/libs/angular/angular-cookies.min.js"></script>
+		<script src="assets/libs/jquery/jquery.min.js"></script>
+		<script src="assets/libs/moment/moment.min.js"></script>
+		<script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
+		<script src="app/app.js"></script>
+	</body>
+</html>
