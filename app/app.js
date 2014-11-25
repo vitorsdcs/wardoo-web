@@ -10,7 +10,7 @@ angular.module('Wardoo', [
     'ngCookies'
 ])
 
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
 		.when('/', {
 			controller: 'HomeController',
@@ -29,7 +29,7 @@ angular.module('Wardoo', [
 			template: '',
 		})
 		
-		.otherwise({ redirectTo: '/' });
+		$locationProvider.html5Mode(true);
 }])
 
 .run(['$rootScope', '$location', '$cookieStore', '$http',
