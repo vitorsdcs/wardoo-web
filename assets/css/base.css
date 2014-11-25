@@ -1,32 +1,40 @@
-main.col-md-9 {
+#logo {
+	text-align: center;
+}
+
+main.col-md-10 {
 	padding-top: 1%;
 }
 
-aside.col-md-3 {
+aside.col-md-2 {
 	height: 100%;
 	padding: 1%;
 	text-align: center;
-	width: 15%;
 }
 
-aside.col-md-3 section {
+aside.col-md-2 section {
 	margin: 0 0 10%;
 	padding: 0 0 10%;
 }
 
-aside.col-md-3 nav {
+aside.col-md-2 nav {
 	text-align: left;
 }
 
-aside.col-md-3 nav > ul > li {
+aside.col-md-2 nav > ul > li {
     margin: 0 0 15%;
 }
 
-aside.col-md-3 nav > ul > li:last-child {
+aside.col-md-2 nav > ul > li:last-child {
 	margin: 0;
 }
 
-aside.col-md-3 nav > ul > li > i {
+aside.col-md-2 nav > ul > li > a {
+	outline: none;
+	text-decoration: none;
+}
+
+aside.col-md-2 nav > ul > li > a > i {
     text-align: center;
     width: 20%;
 }

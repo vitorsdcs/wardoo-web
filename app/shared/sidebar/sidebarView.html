@@ -7,29 +7,9 @@
 <section>
 	<nav>
 		<ul>
-			<li><i class="fa fa-bar-chart"></i> Início</li>
-			<li><i class="fa fa-inbox"></i> Mensagens</li>
-			<li><i class="fa fa-group"></i> Turmas</li>
-			<li><i class="fa fa-list"></i> Chamadas</li>
-			<li><i class="fa fa-font"></i> Notas</li>
-		</ul>
-	</nav>
-</section>
-
-<section>
-	<nav>
-		<ul>
-			<li><i class="fa fa-info"></i> Sobre</li>
-			<li><i class="fa fa-envelope-o"></i> Contato</li>
-		</ul>
-	</nav>
-</section>
-
-<section>
-	<nav>
-		<ul>
-			<li><i class="fa fa-user"></i> Minha conta</li>
-			<li><i class="fa fa-sign-out"></i> Sair</li>
+			<li><a href="/#/"><i class="fa fa-bar-chart"></i> Home</a></li>
+			<li><a href="/#/login" ng-if="isLoggedOut"><i class="fa fa-sign-in"></i> Sign in</a></li>
+			<li><a href="/#/logout" ng-if="isLoggedIn"><i class="fa fa-sign-out"></i> Sign out</a></li>
 		</ul>
 	</nav>
 </section>
