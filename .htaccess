@@ -1,5 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+	
+	# Redirect all users to access the site with the 'www.' prefix
+	RewriteCond %{HTTP_HOST} .
+	RewriteCond %{HTTP_HOST} !^www\. [NC]
+	RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 	# Don't rewrite files or directories
 	RewriteCond %{REQUEST_FILENAME} -f [OR]
