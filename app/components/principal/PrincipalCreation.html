@@ -1,0 +1,101 @@
+<h1>Create Principal</h1>
+
+<form novalidate="novalidate" class="form-horizontal">
+	<section>
+		<h3>Credentials</h3>
+		<div class="control-group">
+			<label class="control-label" for="inputUserName">Username:</label>
+			<div class="controls">
+				<input type="text" id="inputUserName" class="form-control" ng-model="principal.credential.userName"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputPassword">Password:</label>
+			<div class="controls">
+				<input type="password" id="inputPassword" class="form-control" ng-model="principal.credential.password"/>
+			</div>
+		</div>
+		<input type="hidden" ng-init="principal.credential.user.role = 'PRINCIPAL'"/>
+	</section>
+	
+	<section>
+		<h3>Personal info</h3>
+		<div class="control-group">
+			<label class="control-label" for="inputFirstName">First name:</label>
+			<div class="controls">
+				<input type="text" id="inputFirstName" class="form-control" ng-model="principal.person.name.name"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputLastName">Last name:</label>
+			<div class="controls">
+				<input type="text" id="inputLastName" class="form-control" ng-model="principal.person.name.surname"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputBirthDate">Birthdate:</label>
+			<div class="controls">
+				<input type="text" id="inputBirthDate" class="form-control" ng-model="principal.person.birthDate"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputGenre">Genre:</label>
+			<div class="controls">
+				<label><input type="radio" name="inputGenre" id="inputGenre" ng-model="principal.person.genre" value="MALE" /> Male</label><br />
+				<label><input type="radio" name="inputGenre" id="inputGenre" ng-model="principal.person.genre" value="FEMALE" /> Female</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputCPF">CPF:</label>
+			<div class="controls">
+				<input type="text" id="inputCPF" class="form-control" ng-model="principal.person.cpf"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputRG">RG:</label>
+			<div class="controls">
+				<input type="text" id="inputRG" class="form-control" ng-model="principal.person.rg"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Email:</label>
+			<div class="controls">
+				<input type="hidden" ng-init="principal.person.contacts[0].type = 'EMAIL'"/>
+				<input type="text" id="inputEmail" class="form-control" ng-model="principal.person.contacts[0].value"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputPhone">Phone:</label>
+			<div class="controls">
+				<input type="hidden" ng-init="principal.person.contacts[1].type = 'PHONE'"/>
+				<input type="text" id="inputPhone" class="form-control" ng-model="principal.person.contacts[1].value"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputSecondaryPhone">Secondary Phone:</label>
+			<div class="controls">
+				<input type="hidden" ng-init="principal.person.contacts[2].type = 'PHONE'"/>
+				<input type="text" id="inputSecondaryPhone" class="form-control" ng-model="principal.person.contacts[2].value"/>
+			</div>
+		</div>
+	</section>
+	
+	<section>
+		<h3>School</h3>
+		<div class="control-group">
+			<label class="control-label" for="inputSchool">School:</label>
+			<div class="controls">
+				<select class="form-control" ng-model="principal.school.id">
+					<option value="1" id="inputSchool" />Wardoo High School</option>
+				</select>
+			</div>
+		</div>
+	</section>
+	
+	<div class="control-group">
+		<div class="controls">
+			<a ng-click="createNewPrincipal()" class="btn btn-small btn-success">Submit</a>
+			<a ng-click="cancel()" class="btn btn-small btn-default">Cancel</a>
+		</div>
+	</div>
+</form>

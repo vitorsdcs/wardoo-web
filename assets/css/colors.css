@@ -2,6 +2,10 @@ body {
 	background-color: #EEEEEE;
 }
 
+main > section, form > section {
+	background-color: #FFFFFF;
+}
+
 aside.col-md-2 {
 	background-color: #186FB6;
 	color: #FFFFFF;
@@ -25,4 +29,22 @@ aside.col-md-2 section a {
 
 #login-form form {
 	background-color: #FFFFFF;
+}
+
+table.table > thead > tr > th {
+	border-color: #EEEEEE;
+}
+
+table.table > thead > tr > th,
+table.table > tbody > tr > th,
+table.table > tfoot > tr > th,
+table.table > thead > tr > td,
+table.table > tbody > tr > td,
+table.table > tfoot > tr > td {
+	color: #555555;
+}
+
+span.glyphicon-user {
+	background: #AAAAAA;
+	color: #FFFFFF;
 }

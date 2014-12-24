@@ -2,12 +2,15 @@
 
 angular.module('Home', []);
 angular.module('Authentication', []);
+angular.module('Principal', []);
 
 angular.module('Wardoo', [
 	'Home',
 	'Authentication',
+	'Principal',
     'ngRoute',
-    'ngCookies'
+    'ngCookies',
+	'ngResource',
 ])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -27,6 +30,16 @@ angular.module('Wardoo', [
 		.when('/logout', {
 			controller: 'LogoutController',
 			template: '',
+		})
+		
+		.when('/principals', {
+			controller: 'PrincipalListController',
+			templateUrl: 'app/components/principal/PrincipalList.html',
+		})
+		
+		.when('/principals/add', {
+			controller: 'PrincipalCreationController',
+			templateUrl: 'app/components/principal/PrincipalCreation.html',
 		})
 		
 		$locationProvider.html5Mode(true);
