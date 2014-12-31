@@ -4,12 +4,14 @@ angular.module('Home', []);
 angular.module('Authentication', []);
 angular.module('Principal', []);
 angular.module('Coordinator', []);
+angular.module('Teacher', []);
 
 angular.module('Wardoo', [
 	'Home',
 	'Authentication',
 	'Principal',
 	'Coordinator',
+	'Teacher',
     'ngRoute',
     'ngCookies',
 	'ngResource',
@@ -52,6 +54,16 @@ angular.module('Wardoo', [
 		.when('/coordinators/add', {
 			controller: 'CoordinatorCreationController',
 			templateUrl: 'app/components/coordinator/CoordinatorCreation.html',
+		})
+		
+		.when('/teachers', {
+			controller: 'TeacherListController',
+			templateUrl: 'app/components/teacher/TeacherList.html',
+		})
+		
+		.when('/teachers/add', {
+			controller: 'TeacherCreationController',
+			templateUrl: 'app/components/teacher/TeacherCreation.html',
 		})
 		
 		$locationProvider.html5Mode(true);
