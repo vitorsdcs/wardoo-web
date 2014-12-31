@@ -15,9 +15,10 @@ angular.module('Wardoo', [
     'ngRoute',
     'ngCookies',
 	'ngResource',
+	'ngProgress',
 ])
 
-.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
 		.when('/', {
 			controller: 'HomeController',

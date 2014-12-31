@@ -3,8 +3,24 @@
 angular.module('Coordinator')
 
 .controller('CoordinatorListController',
-	['$scope', 'CoordinatorsFactory', 'CoordinatorFactory', '$location',
-	function ($scope, CoordinatorsFactory, CoordinatorFactory, $location) {
+	['$scope', 'CoordinatorsFactory', 'CoordinatorFactory', '$location', 'ngProgress',
+	function ($scope, CoordinatorsFactory, CoordinatorFactory, $location, ngProgress) {
+		ngProgress.color('#186FB6');
+		ngProgress.start();
+		$scope.loading = true;
+		$scope.empty = true;
+		$scope.coordinators = CoordinatorsFactory.query();
+		$scope.coordinators.$promise.then(function (result) {
+			$scope.coordinators = result;
+			$scope.empty = $scope.coordinators.length == 0;
+			$scope.loading = false;
+			ngProgress.complete();
+		});
+		
+		$scope.createNewCoordinator = function() {
+			$location.path('/coordinators/add');
+		};
+		
 		$scope.editCoordinator = function(coordinatorId) {
 			$location.path('/coordinators/' + coordinatorId);
 		};
@@ -13,12 +29,6 @@ angular.module('Coordinator')
 			CoordinatorFactory.delete({ id: coordinatorId });
 			$scope.coordinators = CoordinatorsFactory.query();
 		};
-		
-		$scope.createNewCoordinator = function() {
-			$location.path('/coordinators/add');
-		};
-		
-		$scope.coordinators = CoordinatorsFactory.query();
 	}
 ])
 

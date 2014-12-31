@@ -5,7 +5,7 @@
 </a>
 
 <section>
-	<table class="table table-striped table-condensed" ng-show="teachers.length">
+	<table class="table table-striped table-condensed" ng-hide="empty">
 		<thead>
 			<tr>
 				<th></th<>
@@ -31,5 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<div ng-show="!teachers.length">No teachers found.</div>
+	<div ng-show="loading">Loading teachers...</div>
+	<div ng-show="!loading && empty">No teachers found.</div>
 </section>

@@ -3,8 +3,24 @@
 angular.module('Teacher')
 
 .controller('TeacherListController',
-	['$scope', 'TeachersFactory', 'TeacherFactory', '$location',
-	function ($scope, TeachersFactory, TeacherFactory, $location) {
+	['$scope', 'TeachersFactory', 'TeacherFactory', '$location', 'ngProgress',
+	function ($scope, TeachersFactory, TeacherFactory, $location, ngProgress) {
+		ngProgress.color('#186FB6');
+		ngProgress.start();
+		$scope.loading = true;
+		$scope.empty = true;
+		$scope.teachers = TeachersFactory.query();
+		$scope.teachers.$promise.then(function (result) {
+			$scope.teachers = result;
+			$scope.empty = $scope.teachers.length == 0;
+			$scope.loading = false;
+			ngProgress.complete();
+		});
+		
+		$scope.createNewTeacher = function() {
+			$location.path('/teachers/add');
+		};
+		
 		$scope.editTeacher = function(teacherId) {
 			$location.path('/teachers/' + teacherId);
 		};
@@ -13,12 +29,6 @@ angular.module('Teacher')
 			TeacherFactory.delete({ id: teacherId });
 			$scope.teachers = TeachersFactory.query();
 		};
-		
-		$scope.createNewTeacher = function() {
-			$location.path('/teachers/add');
-		};
-		
-		$scope.teachers = TeachersFactory.query();
 	}
 ])
 

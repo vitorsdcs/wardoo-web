@@ -5,7 +5,7 @@
 </a>
 
 <section>
-	<table class="table table-striped table-condensed" ng-show="coordinators.length">
+	<table class="table table-striped table-condensed" ng-hide="empty">
 		<thead>
 			<tr>
 				<th></th<>
@@ -31,5 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<div ng-show="!coordinators.length">No coordinators found.</div>
+	<div ng-show="loading">Loading coordinators...</div>
+	<div ng-show="!loading && empty">No coordinators found.</div>
 </section>
