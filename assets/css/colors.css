@@ -23,12 +23,12 @@ aside.col-md-2 section a {
 	color: #FFFFFF;
 }
 
-#login-form #logo {
-	color: #186FB6;
+form#login {
+	background-color: #FFFFFF;
 }
 
-#login-form form {
-	background-color: #FFFFFF;
+form#login #logo {
+	color: #186FB6;
 }
 
 table.table > thead > tr > th {

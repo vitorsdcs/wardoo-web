@@ -1,40 +1,107 @@
-#login-form {	
-	margin-top: 80px;
-	margin-bottom: 80px;
-}
-
-#login-form #logo {
-	margin-bottom: 20px;
-}
-
-#login-form form {
-	max-width: 380px;
-	padding: 15px 35px 45px;
+form  {
 	margin: 0 auto;
+	width: 70%;
+}
+
+form#login {
 	box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	margin: 80px auto;
+	padding: 15px 35px 45px;
+	width: 25%;
 }
 
-#login-form form h2 {
-	margin-bottom: 30px;
-}
-
-#login-form form .form-control {
-	position: relative;
-	font-size: 16px;
-	height: auto;
-	padding: 10px;
-	box-sizing: border-box;
-	z-index: 2;
-}
-
-#login-form input[type="text"] {
-	margin-bottom: -1px;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-#login-form input[type="password"] {
+form#login #logo {
 	margin-bottom: 20px;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+}
+
+form .control-group {
+	margin: 0 0 20px;
+	position: relative;
+}
+
+form .control-group.no-margin {
+	margin: 0;
+}
+
+form .control-group.floating-label {
+	padding: 15px 0 0;
+}
+
+form label .field-required {
+	color: #F00F00;
+	cursor: help;
+}
+
+form label {
+	display: block;
+	color: #999999;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+form .floating-label input.form-control ~ label,
+form .floating-label select.form-control ~ label {
+	font-size: 14px;
+	position: absolute;
+	top: 21px;
+	transition: 0.2s ease all;
+}
+
+form .floating-label input.form-control,
+form .floating-label select.form-control {
+	border: none;
+	border-bottom: 1px solid #CCCCCC;
+	border-radius: 0px;
+	box-shadow: none;
+	color: #000000;
+	display: block;
+	padding: 7px 0;
+}
+
+form .floating-label input.form-control:focus {
+	border-bottom: 2px solid #186FB6;
+	box-shadow: none;
+	outline: none;
+}
+
+form .floating-label input.form-control:focus ~ label,
+form .floating-label select.form-control:focus ~ label {
+	color: #186FB6;
+}
+
+form .floating-label input.form-control:focus ~ label,
+form .floating-label input.form-control.ng-filled ~ label,
+form .floating-label input.form-control.ng-invalid-email ~ label,
+form .floating-label input.form-control.ng-invalid-maxlength.ng-valid-email ~ label,
+form .floating-label select.form-control ~ label {
+  font-size: 11px;
+  top: 0;
+}
+
+form .error-text {
+	color: #D34336;
+	font-size: 11px;
+}
+
+.btn {
+	background-color: #FFFFFF;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	color: #646464;
+	margin: 0 10px 0 0;
+	text-transform: uppercase;
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	transition-delay: 0.2s;
+	min-width: 120px;
+}
+
+.btn-primary {
+	background-color: #186FB6;
+	color: #FFFFFF;
+}
+
+.btn-success {
+	background-color: #5CB85C;
+	color: #FFFFFF;
 }

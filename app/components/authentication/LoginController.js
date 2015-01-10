@@ -6,6 +6,7 @@ angular.module('Authentication')
 	['$scope', '$rootScope', '$location', 'AuthenticationService',
 	function ($scope, $rootScope, $location, AuthenticationService) {
 		AuthenticationService.ClearCredentials();
+		console.dir($scope);
 		
 		$scope.login = function () {
 			$scope.dataLoading = true;

@@ -1,7 +1,7 @@
 <h1>Teachers</h1>
 
 <a ng-click="createNewTeacher()" class="btn btn-small btn-primary add-item">
-	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add teacher
+	+ Add teacher
 </a>
 
 <section>
@@ -20,7 +20,7 @@
 			<tr ng-repeat="teacher in teachers">
 				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 				<td>{{ teacher.person.name.name }} {{ teacher.person.name.surname }}</td>
-				<td>{{ teacher.person.birthDate }}</td>
+				<td>{{ teacher.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(teacher.person.birthDate) }} years old)</td>
 				<td>{{ teacher.person.cpf }}</td>
 				<td>{{ teacher.person.rg }}</td>
 				<td>

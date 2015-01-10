@@ -5,6 +5,7 @@ angular.module('Authentication', []);
 angular.module('Principal', []);
 angular.module('Coordinator', []);
 angular.module('Teacher', []);
+angular.module('Responsible', []);
 
 angular.module('Wardoo', [
 	'Home',
@@ -12,10 +13,12 @@ angular.module('Wardoo', [
 	'Principal',
 	'Coordinator',
 	'Teacher',
+	'Responsible',
     'ngRoute',
     'ngCookies',
 	'ngResource',
 	'ngProgress',
+	'ngMask',
 ])
 
 .config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
@@ -65,6 +68,16 @@ angular.module('Wardoo', [
 		.when('/teachers/add', {
 			controller: 'TeacherCreationController',
 			templateUrl: 'app/components/teacher/TeacherCreation.html',
+		})
+		
+		.when('/responsibles', {
+			controller: 'ResponsibleListController',
+			templateUrl: 'app/components/responsible/ResponsibleList.html',
+		})
+		
+		.when('/responsibles/add', {
+			controller: 'ResponsibleCreationController',
+			templateUrl: 'app/components/responsible/ResponsibleCreation.html',
 		})
 		
 		$locationProvider.html5Mode(true);

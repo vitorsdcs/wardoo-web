@@ -1,0 +1,36 @@
+<h1>Responsibles</h1>
+
+<a ng-click="createNewResponsible()" class="btn btn-small btn-primary add-item">
+	+ Add responsible
+</a>
+
+<section>
+	<table class="table table-striped table-condensed" ng-hide="empty">
+		<thead>
+			<tr>
+				<th></th<>
+				<th>Name</th>
+				<th>Birthdate</th>
+				<th>CPF</th>
+				<th>RG</th>
+				<th>Contact</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="responsible in responsibles">
+				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
+				<td>{{ responsible.person.name.name }} {{ responsible.person.name.surname }}</td>
+				<td>{{ responsible.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(responsible.person.birthDate) }} years old)</td>
+				<td>{{ responsible.person.cpf }}</td>
+				<td>{{ responsible.person.rg }}</td>
+				<td>
+					<ul>
+						<li ng-repeat="contact in responsible.person.contacts">{{ contact.value }}</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div ng-show="loading">Loading responsibles...</div>
+	<div ng-show="!loading && empty">No responsibles found.</div>
+</section>

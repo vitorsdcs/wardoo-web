@@ -1,101 +1,99 @@
-<h1>Create Coordinator</h1>
-
-<form novalidate="novalidate" class="form-horizontal">
-	<section>
-		<h3>Credentials</h3>
-		<div class="control-group">
-			<label class="control-label" for="inputUserName">Username:</label>
-			<div class="controls">
-				<input type="text" id="inputUserName" class="form-control" ng-model="coordinator.credential.userName"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputPassword">Password:</label>
-			<div class="controls">
-				<input type="password" id="inputPassword" class="form-control" ng-model="coordinator.credential.password"/>
-			</div>
-		</div>
-		<input type="hidden" ng-init="coordinator.credential.user.role = 'COORDINATOR'"/>
-	</section>
+<form name="coordinatorcreation">
+	<h1>Create Coordinator</h1>
 	
 	<section>
-		<h3>Personal info</h3>
-		<div class="control-group">
-			<label class="control-label" for="inputFirstName">First name:</label>
-			<div class="controls">
-				<input type="text" id="inputFirstName" class="form-control" ng-model="coordinator.person.name.name"/>
-			</div>
+		<h4>Credentials</h4>
+		
+		<div class="control-group floating-label">
+			<input type="text" id="username" name="username" class="form-control" ng-class="{'ng-filled': coordinator.credential.userName.length > 0}" ng-model="coordinator.credential.userName" ng-maxlength=255 required />
+			<label for="username">Username <span class="field-required" title="This field is required.">*</span></label>
+			<div ng-show="coordinatorcreation.username.$dirty && coordinatorcreation.username.$error.required" class="error-text">Username field is required.</div>
+			<div ng-show="coordinatorcreation.username.$dirty && coordinatorcreation.username.$error.maxlength" class="error-text">Username field cannot be longer than 255 characters.</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputLastName">Last name:</label>
-			<div class="controls">
-				<input type="text" id="inputLastName" class="form-control" ng-model="coordinator.person.name.surname"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputBirthDate">Birthdate:</label>
-			<div class="controls">
-				<input type="text" id="inputBirthDate" class="form-control" ng-model="coordinator.person.birthDate"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputGenre">Genre:</label>
-			<div class="controls">
-				<label><input type="radio" name="inputGenre" id="inputGenre" ng-model="coordinator.person.genre" value="MALE" /> Male</label><br />
-				<label><input type="radio" name="inputGenre" id="inputGenre" ng-model="coordinator.person.genre" value="FEMALE" /> Female</label>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputCPF">CPF:</label>
-			<div class="controls">
-				<input type="text" id="inputCPF" class="form-control" ng-model="coordinator.person.cpf"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputRG">RG:</label>
-			<div class="controls">
-				<input type="text" id="inputRG" class="form-control" ng-model="coordinator.person.rg"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputEmail">Email:</label>
-			<div class="controls">
-				<input type="hidden" ng-init="coordinator.person.contacts[0].type = 'EMAIL'"/>
-				<input type="text" id="inputEmail" class="form-control" ng-model="coordinator.person.contacts[0].value"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputPhone">Phone:</label>
-			<div class="controls">
-				<input type="hidden" ng-init="coordinator.person.contacts[1].type = 'PHONE'"/>
-				<input type="text" id="inputPhone" class="form-control" ng-model="coordinator.person.contacts[1].value"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputSecondaryPhone">Secondary Phone:</label>
-			<div class="controls">
-				<input type="hidden" ng-init="coordinator.person.contacts[2].type = 'PHONE'"/>
-				<input type="text" id="inputSecondaryPhone" class="form-control" ng-model="coordinator.person.contacts[2].value"/>
-			</div>
+		
+		<div class="control-group floating-label">
+			<input type="password" id="password" name="password" class="form-control" ng-class="{'ng-filled': coordinator.credential.password.length > 0}" ng-model="coordinator.credential.password" ng-maxlength=255 required />
+			<label for="password">Password <span class="field-required" title="This field is required.">*</span></label>
+			<div ng-show="coordinatorcreation.password.$dirty && coordinatorcreation.password.$error.required" class="error-text">Password field is required.</div>
+			<div ng-show="coordinatorcreation.password.$dirty && coordinatorcreation.password.$error.maxlength" class="error-text">Password field cannot be longer than 255 characters.</div>
 		</div>
 	</section>
 	
 	<section>
-		<h3>School</h3>
+		<h4>Personal info</h4>
+		
+		<div class="control-group floating-label">
+			<input type="text" id="name" name="name" class="form-control" ng-class="{'ng-filled': coordinator.person.name.name.length > 0}" ng-model="coordinator.person.name.name" ng-maxlength=255 required />
+			<label for="name">First name <span class="field-required" title="This field is required.">*</span></label>
+			<div ng-show="coordinatorcreation.name.$dirty && coordinatorcreation.name.$error.required" class="error-text">First name field is required.</div>
+			<div ng-show="coordinatorcreation.name.$dirty && coordinatorcreation.name.$error.maxlength" class="error-text">First name field cannot be longer than 255 characters.</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="text" id="surname" name="surname" class="form-control" ng-class="{'ng-filled': coordinator.person.name.surname.length > 0}" ng-model="coordinator.person.name.surname" ng-maxlength=255 required />
+			<label for="surname">Last name <span class="field-required" title="This field is required.">*</span></label>
+			<div ng-show="coordinatorcreation.surname.$dirty && coordinatorcreation.surname.$error.required" class="error-text">Last name field is required.</div>
+			<div ng-show="coordinatorcreation.surname.$dirty && coordinatorcreation.surname.$error.maxlength" class="error-text">Last name field cannot be longer than 255 characters.</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="text" id="birthdate" name="birthdate" class="form-control" ng-class="{'ng-filled': coordinator.person.birthDate.length > 0}" ng-model="coordinator.person.birthDate" mask="99/99/9999" mask-validate="true" />
+			<label for="birthdate">Birthdate</label>
+			<div ng-show="coordinatorcreation.birthdate.$dirty && coordinatorcreation.birthdate.$error.mask-validate" class="error-text">Birthdate field is invalid.</div>
+		</div>
+		
 		<div class="control-group">
-			<label class="control-label" for="inputSchool">School:</label>
-			<div class="controls">
-				<select class="form-control" ng-model="coordinator.school.id">
-					<option value="1" id="inputSchool" />Wardoo High School</option>
-				</select>
-			</div>
+			<label for="genre">Genre</label>
+			<div><input type="radio" name="genre" id="genre-male" ng-model="coordinator.person.genre" value="MALE" /> Male</div>
+			<div><input type="radio" name="genre" id="genre-female" ng-model="coordinator.person.genre" value="FEMALE" /> Female</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="text" id="cpf" name="cpf" class="form-control" ng-class="{'ng-filled': coordinator.person.cpf.length > 0}" ng-model="coordinator.person.cpf" mask="999.999.999-99" mask-validate="true" />
+			<label for="cpf">CPF</label>
+			<div ng-show="coordinatorcreation.cpf.$dirty && coordinatorcreation.cpf.$error.mask-validate" class="error-text">CPF field is invalid.</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="text" id="rg" name="rg" class="form-control" ng-class="{'ng-filled': coordinator.person.rg.length > 0}" ng-model="coordinator.person.rg" ng-maxlength=20 />
+			<label for="rg">RG</label>
+			<div ng-show="coordinatorcreation.rg.$dirty && coordinatorcreation.rg.$error.maxlength" class="error-text">RG field cannot be longer than 20 characters.</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="email" id="email" name="email" class="form-control" ng-class="{'ng-filled': coordinator.person.contacts[0].value.length > 0}" ng-model="coordinator.person.contacts[0].value" ng-maxlength=255 ng-blur="visitedEmail = true" />
+			<label for="email">Email</label>
+			<div ng-show="coordinatorcreation.email.$dirty && coordinatorcreation.email.$error.maxlength" class="error-text">Email field cannot be longer than 255 characters.</div>
+			<div ng-show="coordinatorcreation.email.$dirty && coordinatorcreation.email.$invalid && visitedEmail && !coordinatorcreation.email.$error.required" class="error-text">That is not a valid email. Please input a valid email.</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="tel" id="phone" name="phone" class="form-control" ng-class="{'ng-filled': coordinator.person.contacts[1].value.length > 0}" ng-model="coordinator.person.contacts[1].value" mask="(99) 9?9999-9999" mask-validate="true" />
+			<label for="phone">Phone</label>
+			<div ng-show="coordinatorcreation.phone.$dirty && coordinatorcreation.phone.$error.mask-validate" class="error-text">Phone field is invalid.</div>
+		</div>
+		
+		<div class="control-group floating-label">
+			<input type="tel" id="phone-secondary" name="phonealt" class="form-control" ng-class="{'ng-filled': coordinator.person.contacts[2].value.length > 0}" ng-model="coordinator.person.contacts[2].value" mask="(99) 9?9999-9999" mask-validate="true" />
+			<label for="phone-secondary">Secondary Phone</label>
+			<div ng-show="coordinatorcreation.phonealt.$dirty && coordinatorcreation.phonealt.$error.mask-validate" class="error-text">Secondary Phone field is invalid.</div>
+		</div>
+	</section>
+	
+	<section>
+		<h4>School</h4>
+		
+		<div class="control-group floating-label">
+			<select class="form-control" name="school" ng-model="coordinator.school.id" required>
+				<option value="1">Wardoo High School</option>
+			</select>
+			<label for="school">School <span class="field-required" title="This field is required.">*</span></label>
+			<div ng-show="coordinatorcreation.school.$dirty && coordinatorcreation.school.$error.required" class="error-text">School field is required</div>
 		</div>
 	</section>
 	
 	<div class="control-group">
-		<div class="controls">
-			<a ng-click="createNewPrincipal()" class="btn btn-small btn-success">Submit</a>
-			<a ng-click="cancel()" class="btn btn-small btn-default">Cancel</a>
-		</div>
+		<a ng-click="createNewCoordinator()" class="btn btn-small btn-success" ng-disabled="coordinatorcreation.$invalid">Submit</a>
+		<a ng-click="cancel()" class="btn btn-small btn-default">Cancel</a>
 	</div>
 </form>

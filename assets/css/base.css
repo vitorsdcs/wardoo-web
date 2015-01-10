@@ -6,12 +6,10 @@ html {
 	text-align: center;
 }
 
-main > h1,
-main > .h1,
-main > h2,
-main > .h2,
-main > h3,
-main > .h3 {
+main > h1, main > .h1,
+main > h2, main > .h2,
+main > h3, main > .h3,
+main > h4, main > .h4 {
 	float: left;
 }
 
@@ -22,7 +20,7 @@ main > .add-item {
 
 main.col-md-10 {
 	float: right;
-	padding: 1% 1% 5%;
+	padding: 1%;
 }
 
 main > section, form > section {
@@ -93,5 +91,8 @@ table.table > tbody > tr > td {
 
 span.glyphicon-user {
 	border-radius: 50%;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 	padding: 15px;
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	transition-delay: 0.2s;
 }
