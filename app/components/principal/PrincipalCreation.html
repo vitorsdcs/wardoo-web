@@ -5,7 +5,7 @@
 		<h4>{{ 'CREDENTIAL.TITLE' | translate }}</h4>
 		
 		<div class="control-group floating-label">
-			<input type="text" id="username" name="username" class="form-control" ng-class="{'ng-filled': principal.credential.userName.length > 0}" ng-model="principal.credential.userName" ng-maxlength=255 required />
+			<input type="text" id="username" name="username" class="form-control" ng-class="{'ng-filled': principal.credential.username.length > 0}" ng-model="principal.credential.username" ng-maxlength=255 required />
 			<label for="username">{{ 'CREDENTIAL.USERNAME' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
 			<div ng-show="principalcreation.username.$dirty && principalcreation.username.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</div>
 			<div ng-show="principalcreation.username.$dirty && principalcreation.username.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</div>

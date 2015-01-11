@@ -42,19 +42,23 @@ angular.module('Teacher')
 	['$scope', 'TeachersFactory', '$location',
 	function ($scope, TeachersFactory, $location) {
 		$scope.createNewTeacher = function () {
-			$scope.teacher.credential["user"] = {"role": "TEACHER"};
+			// Add role.
+			$scope.teacher.credential['user'] = {'role': 'TEACHER'};
 			
-			// Sanitize contacts
+			// Sanitize contacts.
 			$scope.contacts = [];
 			for (var contact in $scope.teacher.person.contacts) {
-				if ($scope.teacher.person.contacts[contact].value.indexOf("@") > -1)
-					$scope.teacher.person.contacts[contact].type = "EMAIL";
+				if ($scope.teacher.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.teacher.person.contacts[contact].type = 'EMAIL';
 				else
-					$scope.teacher.person.contacts[contact].type = "PHONE";
+					$scope.teacher.person.contacts[contact].type = 'PHONE';
 				
 				$scope.contacts.push($scope.teacher.person.contacts[contact]);
 			}
 			$scope.teacher.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.teacher.person.birthDate = $filter('date')(new Date($scope.teacher.person.birthDate), 'yyyy-MM-dd');
 			
 			TeachersFactory.create($scope.teacher);
 			$location.path('/teachers');

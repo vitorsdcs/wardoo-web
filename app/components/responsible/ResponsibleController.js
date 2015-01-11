@@ -42,19 +42,23 @@ angular.module('Responsible')
 	['$scope', 'ResponsiblesFactory', '$location',
 	function ($scope, ResponsiblesFactory, $location) {
 		$scope.createNewResponsible = function () {
-			$scope.responsible.credential["user"] = {"role": "RESPONSIBLE"};
+			// Add role.
+			$scope.responsible.credential['user'] = {'role': 'RESPONSIBLE'};
 			
-			// Sanitize contacts
+			// Sanitize contacts.
 			$scope.contacts = [];
 			for (var contact in $scope.responsible.person.contacts) {
-				if ($scope.responsible.person.contacts[contact].value.indexOf("@") > -1)
-					$scope.responsible.person.contacts[contact].type = "EMAIL";
+				if ($scope.responsible.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.responsible.person.contacts[contact].type = 'EMAIL';
 				else
-					$scope.responsible.person.contacts[contact].type = "PHONE";
+					$scope.responsible.person.contacts[contact].type = 'PHONE';
 				
 				$scope.contacts.push($scope.responsible.person.contacts[contact]);
 			}
 			$scope.responsible.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.responsible.person.birthDate = $filter('date')(new Date($scope.responsible.person.birthDate), 'yyyy-MM-dd');
 			
 			ResponsiblesFactory.create($scope.responsible);
 			$location.path('/responsibles');

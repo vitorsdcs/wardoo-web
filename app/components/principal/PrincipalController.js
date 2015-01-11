@@ -39,22 +39,26 @@ angular.module('Principal')
 ])
 
 .controller('PrincipalCreationController',
-	['$scope', 'PrincipalsFactory', '$location',
-	function ($scope, PrincipalsFactory, $location) {
+	['$scope', 'PrincipalsFactory', '$location', '$filter',
+	function ($scope, PrincipalsFactory, $location, $filter) {
 		$scope.createNewPrincipal = function () {
-			$scope.principal.credential["user"] = {"role": "PRINCIPAL"};
+			// Add role.
+			$scope.principal.credential['user'] = {'role': 'PRINCIPAL'};
 			
-			// Sanitize contacts
+			// Sanitize contacts.
 			$scope.contacts = [];
 			for (var contact in $scope.principal.person.contacts) {
-				if ($scope.principal.person.contacts[contact].value.indexOf("@") > -1)
-					$scope.principal.person.contacts[contact].type = "EMAIL";
+				if ($scope.principal.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.principal.person.contacts[contact].type = 'EMAIL';
 				else
-					$scope.principal.person.contacts[contact].type = "PHONE";
+					$scope.principal.person.contacts[contact].type = 'PHONE';
 				
 				$scope.contacts.push($scope.principal.person.contacts[contact]);
 			}
 			$scope.principal.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.principal.person.birthDate = $filter('date')(new Date($scope.principal.person.birthDate), 'yyyy-MM-dd');
 			
 			PrincipalsFactory.create($scope.principal);
 			$location.path('/principals');

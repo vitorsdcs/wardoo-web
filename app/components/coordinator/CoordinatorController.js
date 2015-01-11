@@ -42,19 +42,23 @@ angular.module('Coordinator')
 	['$scope', 'CoordinatorsFactory', '$location',
 	function ($scope, CoordinatorsFactory, $location) {
 		$scope.createNewCoordinator = function () {
-			$scope.coordinator.credential["user"] = {"role": "COORDINATOR"};
+			// Add role.
+			$scope.coordinator.credential['user'] = {'role': 'COORDINATOR'};
 			
-			// Sanitize contacts
+			// Sanitize contacts.
 			$scope.contacts = [];
 			for (var contact in $scope.coordinator.person.contacts) {
-				if ($scope.coordinator.person.contacts[contact].value.indexOf("@") > -1)
-					$scope.coordinator.person.contacts[contact].type = "EMAIL";
+				if ($scope.coordinator.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.coordinator.person.contacts[contact].type = 'EMAIL';
 				else
-					$scope.coordinator.person.contacts[contact].type = "PHONE";
+					$scope.coordinator.person.contacts[contact].type = 'PHONE';
 				
 				$scope.contacts.push($scope.coordinator.person.contacts[contact]);
 			}
 			$scope.coordinator.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.coordinator.person.birthDate = $filter('date')(new Date($scope.coordinator.person.birthDate), 'yyyy-MM-dd');
 			
 			CoordinatorsFactory.create($scope.coordinator);
 			$location.path('/coordinators');
