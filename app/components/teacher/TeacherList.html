@@ -1,7 +1,7 @@
-<h1>Teachers</h1>
+<h1>{{ 'TEACHER.TITLE' | translate }}</h1>
 
 <a ng-click="createNewTeacher()" class="btn btn-small btn-primary add-item">
-	+ Add teacher
+	+ {{ 'TEACHER.ADD' | translate }}
 </a>
 
 <section>
@@ -9,18 +9,18 @@
 		<thead>
 			<tr>
 				<th></th<>
-				<th>Name</th>
-				<th>Birthdate</th>
-				<th>CPF</th>
-				<th>RG</th>
-				<th>Contact</th>
+				<th>{{ 'PERSON.NAME' | translate}}</th>
+				<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+				<th>{{ 'PERSON.CPF' | translate }}</th>
+				<th>{{ 'PERSON.RG' | translate }}</th>
+				<th>{{ 'PERSON.CONTACT' | translate }}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="teacher in teachers">
 				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 				<td>{{ teacher.person.name.name }} {{ teacher.person.name.surname }}</td>
-				<td>{{ teacher.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(teacher.person.birthDate) }} years old)</td>
+				<td>{{ teacher.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(teacher.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
 				<td>{{ teacher.person.cpf }}</td>
 				<td>{{ teacher.person.rg }}</td>
 				<td>
@@ -31,6 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<div ng-show="loading">Loading teachers...</div>
-	<div ng-show="!loading && empty">No teachers found.</div>
+	<div ng-show="loading">{{ 'TEACHER.LOADING' | translate }}</div>
+	<div ng-show="!loading && empty">{{ 'TEACHER.EMPTY' | translate }}</div>
 </section>

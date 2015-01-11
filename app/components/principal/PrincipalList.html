@@ -1,7 +1,7 @@
-<h1>Principals</h1>
+<h1>{{ 'PRINCIPAL.TITLE' | translate }}</h1>
 
 <a ng-click="createNewPrincipal()" class="btn btn-small btn-primary add-item">
-	+ Add principal
+	+ {{ 'PRINCIPAL.ADD' | translate }}
 </a>
 
 <section>
@@ -9,18 +9,18 @@
 		<thead>
 			<tr>
 				<th></th<>
-				<th>Name</th>
-				<th>Birthdate</th>
-				<th>CPF</th>
-				<th>RG</th>
-				<th>Contact</th>
+				<th>{{ 'PERSON.NAME' | translate}}</th>
+				<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+				<th>{{ 'PERSON.CPF' | translate }}</th>
+				<th>{{ 'PERSON.RG' | translate }}</th>
+				<th>{{ 'PERSON.CONTACT' | translate }}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="principal in principals">
 				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 				<td>{{ principal.person.name.name }} {{ principal.person.name.surname }}</td>
-				<td>{{ principal.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(principal.person.birthDate) }} years old)</td>
+				<td>{{ principal.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(principal.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
 				<td>{{ principal.person.cpf }}</td>
 				<td>{{ principal.person.rg }}</td>
 				<td>
@@ -31,6 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<div ng-show="loading">Loading principals...</div>
-	<div ng-show="!loading && empty">No principals found.</div>
+	<div ng-show="loading">{{ 'PRINCIPAL.LOADING' | translate }}</div>
+	<div ng-show="!loading && empty">{{ 'PRINCIPAL.EMPTY' | translate }}</div>
 </section>

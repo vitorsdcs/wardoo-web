@@ -1,7 +1,7 @@
-<h1>Coordinators</h1>
+<h1>{{ 'COORDINATOR.TITLE' | translate }}</h1>
 
 <a ng-click="createNewCoordinator()" class="btn btn-small btn-primary add-item">
-	+ Add coordinator
+	+ {{ 'COORDINATOR.ADD' | translate }}
 </a>
 
 <section>
@@ -9,18 +9,18 @@
 		<thead>
 			<tr>
 				<th></th<>
-				<th>Name</th>
-				<th>Birthdate</th>
-				<th>CPF</th>
-				<th>RG</th>
-				<th>Contact</th>
+				<th>{{ 'PERSON.NAME' | translate}}</th>
+				<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+				<th>{{ 'PERSON.CPF' | translate }}</th>
+				<th>{{ 'PERSON.RG' | translate }}</th>
+				<th>{{ 'PERSON.CONTACT' | translate }}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="coordinator in coordinators">
 				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
 				<td>{{ coordinator.person.name.name }} {{ coordinator.person.name.surname }}</td>
-				<td>{{ coordinator.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(coordinator.person.birthDate) }} years old)</td>
+				<td>{{ coordinator.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(coordinator.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
 				<td>{{ coordinator.person.cpf }}</td>
 				<td>{{ coordinator.person.rg }}</td>
 				<td>
@@ -31,6 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<div ng-show="loading">Loading coordinators...</div>
-	<div ng-show="!loading && empty">No coordinators found.</div>
+	<div ng-show="loading">{{ 'COORDINATOR.LOADING' | translate }}</div>
+	<div ng-show="!loading && empty">{{ 'COORDINATOR.EMPTY' | translate }}</div>
 </section>
