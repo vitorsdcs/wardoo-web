@@ -4,7 +4,7 @@
 		<base href="/">
 		<title ng-bind="title ? title + ' &#124; Wardoo' : 'Wardoo'">Wardoo</title>
 		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="assets/libs/font-awesome/css/font-awesome.min.css" />
@@ -14,8 +14,14 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/base.css" />
 	</head>
 	<body>
-		<aside id="left-sidebar" class="col-md-2" ng-if="hideMenus" ng-include="'app/shared/sidebar/SidebarView.html'"></aside>
-		<main id="site-main" ng-class="{'col-md-10': hideMenus}" ng-view></main>
+		
+		<aside id="left-sidebar" class="col-md-2" ng-if="!hideSidebar" ng-show="!hideSidebar" ng-include="'app/shared/sidebar/SidebarView.html'"></aside>
+		
+		<main id="site-main" ng-class="{'col-md-10': !hideSidebar, 'navbar-padding': !hideNavbar}">
+			<nav id="toolbar" class="navbar navbar-default navbar-static-top" ng-if="!hideNavbar" ng-include="'app/shared/navbar/NavbarView.html'"></nav>
+			
+			<main id="content" ng-view></main>
+		</div>
 		
 		<script src="assets/libs/angular/angular.min.js"></script>
 		<script src="assets/libs/angular/angular-route.min.js"></script>

@@ -13,16 +13,13 @@ h4, .h4 {
 	font-size: 20px;
 }
 
-#logo i {
-	font-size: 570%;
+section#logo {
+	font-size: 23px;
+	font-weight: bold;
+	margin-top: 5%;
 }
 
-#logo h1 {
-	font-size: 285%;
-	margin: 0;
-}
-
-#logo p {
-	font-size: 95%;
-	margin: 0;
+form#login #logo {
+	font-size: 3.2vw;
+	white-space: nowrap;
 }

@@ -1,10 +1,20 @@
 <section id="logo">
-	<i class="fa fa-mortar-board"></i>
-	<h1>wardoo</h1>
-	<p>by waven</p>
+	<a href="/">
+		<i class="fa fa-mortar-board"></i> Wardoo
+	</a>
 </section>
 
-<section>
+<section id="user-info" ng-if="isLoggedIn">
+	<div id="user-photo">
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+	</div>
+	<div id="user-welcome">
+		<div>{{ 'AUTHENTICATION.WELCOME' | translate }}</div>
+		<div id="user-name">Vitor</div>
+	</div>
+</section>
+
+<section id="navigation">
 	<nav>
 		<ul>
 			<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ 'HOME.TITLE' | translate }}</a></li>

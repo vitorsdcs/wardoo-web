@@ -39,8 +39,8 @@ angular.module('Coordinator')
 ])
 
 .controller('CoordinatorCreationController',
-	['$scope', 'CoordinatorsFactory', '$location',
-	function ($scope, CoordinatorsFactory, $location) {
+	['$scope', 'CoordinatorsFactory', '$location', '$filter',
+	function ($scope, CoordinatorsFactory, $location, $filter) {
 		$scope.createNewCoordinator = function () {
 			// Add role.
 			$scope.coordinator.credential['user'] = {'role': 'COORDINATOR'};

@@ -39,8 +39,8 @@ angular.module('Responsible')
 ])
 
 .controller('ResponsibleCreationController',
-	['$scope', 'ResponsiblesFactory', '$location',
-	function ($scope, ResponsiblesFactory, $location) {
+	['$scope', 'ResponsiblesFactory', '$location', '$filter',
+	function ($scope, ResponsiblesFactory, $location, $filter) {
 		$scope.createNewResponsible = function () {
 			// Add role.
 			$scope.responsible.credential['user'] = {'role': 'RESPONSIBLE'};

@@ -39,8 +39,8 @@ angular.module('Teacher')
 ])
 
 .controller('TeacherCreationController',
-	['$scope', 'TeachersFactory', '$location',
-	function ($scope, TeachersFactory, $location) {
+	['$scope', 'TeachersFactory', '$location', '$filter',
+	function ($scope, TeachersFactory, $location, $filter) {
 		$scope.createNewTeacher = function () {
 			// Add role.
 			$scope.teacher.credential['user'] = {'role': 'TEACHER'};

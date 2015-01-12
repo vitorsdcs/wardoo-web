@@ -32,7 +32,8 @@ angular.module('Wardoo', [
 			title: 'Login',
 			controller: 'LoginController',
 			templateUrl: 'app/components/authentication/LoginView.html',
-			hideMenus: true,
+			hideSidebar: true,
+			hideNavbar: true,
 		})
 		
 		.when('/logout', {
@@ -85,11 +86,15 @@ angular.module('Wardoo', [
 				'HOME.TITLE': 'Home',
 				'HOME.HELLOWORLD': 'Hello world!',
 				
+				'NAVIGATION.TOGGLE': 'Toggle navigation',
+				'NAVIGATION.CREATE': 'Create',
+				
 				'AUTHENTICATION.SIGNIN': 'Sign in',
 				'AUTHENTICATION.SIGNOUT': 'Sign out',
 				'AUTHENTICATION.LOGIN': 'Login',
 				'AUTHENTICATION.LOGOUT': 'Logout',
 				'AUTHENTICATION.DESCRIPTION': 'Enter your information below to log in.',
+				'AUTHENTICATION.WELCOME': 'Welcome',
 				
 				'CREDENTIAL.TITLE': 'Credentials',
 				'CREDENTIAL.USERNAME': 'Username',
@@ -123,32 +128,38 @@ angular.module('Wardoo', [
 				'PERSON.EMAIL': 'Email',
 				'PERSON.PHONE': 'Phone',
 				'PERSON.PHONEALT': 'Secondary Phone',
+				'PERSON.ACCOUNT': 'My account',
 				
 				'PRINCIPAL.TITLE': 'Principals',
+				'PRINCIPAL.SINGLE': 'Principal',
 				'PRINCIPAL.ADD': 'Add principal',
 				'PRINCIPAL.LOADING': 'Loading principals...',
 				'PRINCIPAL.EMPTY': 'No principals found.',
 				'PRINCIPAL.CREATE': 'Create principal',
 				
 				'COORDINATOR.TITLE': 'Coordinators',
+				'COORDINATOR.SINGLE': 'Coordinator',
 				'COORDINATOR.ADD': 'Add coordinator',
 				'COORDINATOR.LOADING': 'Loading coordinators...',
 				'COORDINATOR.EMPTY': 'No coordinators found.',
 				'COORDINATOR.CREATE': 'Create coordinator',
 				
 				'TEACHER.TITLE': 'Teachers',
+				'TEACHER.SINGLE': 'Teacher',
 				'TEACHER.ADD': 'Add teacher',
 				'TEACHER.LOADING': 'Loading teachers...',
 				'TEACHER.EMPTY': 'No teachers found.',
 				'TEACHER.CREATE': 'Create teacher',
 				
 				'RESPONSIBLE.TITLE': 'Responsibles',
+				'RESPONSIBLE.SINGLE': 'Responsible',
 				'RESPONSIBLE.ADD': 'Add responsible',
 				'RESPONSIBLE.LOADING': 'Loading responsibles...',
 				'RESPONSIBLE.EMPTY': 'No responsibles found.',
 				'RESPONSIBLE.CREATE': 'Create responsible',
 				
 				'STUDENT.TITLE': 'Students',
+				'STUDENT.SINGLE': 'Student',
 				'STUDENT.ADD': 'Add student',
 				'STUDENT.LOADING': 'Loading students...',
 				'STUDENT.EMPTY': 'No students found.',
@@ -158,11 +169,15 @@ angular.module('Wardoo', [
 				'HOME.TITLE': 'Início',
 				'HOME.HELLOWORLD': 'Olá mundo!',
 				
+				'NAVIGATION.TOGGLE': 'Alternar menu',
+				'NAVIGATION.CREATE': 'Cadastrar',
+				
 				'AUTHENTICATION.SIGNIN': 'Entrar',
 				'AUTHENTICATION.SIGNOUT': 'Sair',
 				'AUTHENTICATION.LOGIN': 'Entrar',
 				'AUTHENTICATION.LOGOUT': 'Sair',
 				'AUTHENTICATION.DESCRIPTION': 'Digite seu nome de usuário e senha para entrar.',
+				'AUTHENTICATION.WELCOME': 'Bem-vindo',
 				
 				'CREDENTIAL.TITLE': 'Credenciais',
 				'CREDENTIAL.USERNAME': 'Nome de usuário',
@@ -196,36 +211,42 @@ angular.module('Wardoo', [
 				'PERSON.EMAIL': 'E-mail',
 				'PERSON.PHONE': 'Telefone',
 				'PERSON.PHONEALT': 'Celular',
+				'PERSON.ACCOUNT': 'Minha conta',
 				
 				'PRINCIPAL.TITLE': 'Diretores',
-				'PRINCIPAL.ADD': 'Adicionar diretor',
+				'PRINCIPAL.SINGLE': 'Diretor',
+				'PRINCIPAL.ADD': 'Cadastrar diretor',
 				'PRINCIPAL.LOADING': 'Carregando diretores...',
 				'PRINCIPAL.EMPTY': 'Nenhum diretor encontrado.',
-				'PRINCIPAL.CREATE': 'Criar diretor',
+				'PRINCIPAL.CREATE': 'Cadastrar diretor',
 				
 				'COORDINATOR.TITLE': 'Coordenadores',
-				'COORDINATOR.ADD': 'Adicionar coordenador',
+				'COORDINATOR.SINGLE': 'Coordenador',
+				'COORDINATOR.ADD': 'Cadastrar coordenador',
 				'COORDINATOR.LOADING': 'Carregando coordenadores...',
 				'COORDINATOR.EMPTY': 'Nenhum coordenador encontrado.',
-				'COORDINATOR.CREATE': 'Criar coordenador',
+				'COORDINATOR.CREATE': 'Cadastrar coordenador',
 				
 				'TEACHER.TITLE': 'Professores',
-				'TEACHER.ADD': 'Adicionar professor',
+				'TEACHER.SINGLE': 'Professor',
+				'TEACHER.ADD': 'Cadastrar professor',
 				'TEACHER.LOADING': 'Carregando professores...',
 				'TEACHER.EMPTY': 'Nenhum professor encontrado.',
-				'TEACHER.CREATE': 'Criar professor',
+				'TEACHER.CREATE': 'Cadastrar professor',
 				
 				'RESPONSIBLE.TITLE': 'Responsáveis',
-				'RESPONSIBLE.ADD': 'Adicionar responsável',
+				'RESPONSIBLE.SINGLE': 'Responsável',
+				'RESPONSIBLE.ADD': 'Cadastrar responsável',
 				'RESPONSIBLE.LOADING': 'Carregando responsáveis...',
 				'RESPONSIBLE.EMPTY': 'Nenhum responsável encontrado.',
-				'RESPONSIBLE.CREATE': 'Criar responsável',
+				'RESPONSIBLE.CREATE': 'Cadastrar responsável',
 				
 				'STUDENT.TITLE': 'Alunos',
-				'STUDENT.ADD': 'Adicionar aluno',
+				'STUDENT.SINGLE': 'Aluno',
+				'STUDENT.ADD': 'Cadastrar aluno',
 				'STUDENT.LOADING': 'Carregando alunos...',
 				'STUDENT.EMPTY': 'Nenhum aluno encontrado.',
-				'STUDENT.CREATE': 'Criar aluno',
+				'STUDENT.CREATE': 'Cadastrar aluno',
 			});
 		$translateProvider.preferredLanguage('pt-br');
 		
@@ -236,9 +257,12 @@ angular.module('Wardoo', [
 	function($rootScope, $location, $cookieStore, $http) {
 		$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 			$rootScope.title = current.$$route.title;
-			$rootScope.hideMenus = !current.$$route.hideMenus;
+			
 			$rootScope.isLoggedIn = $rootScope.globals.currentUser ? true : false;
 			$rootScope.isLoggedOut = $rootScope.globals.currentUser ? false : true;
+			
+			$rootScope.hideSidebar = current.$$route.hideSidebar === true;
+			$rootScope.hideNavbar = current.$$route.hideNavbar === true || $rootScope.isLoggedOut;
 		});
 		
         $rootScope.globals = $cookieStore.get('globals') || {};
