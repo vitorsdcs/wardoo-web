@@ -261,7 +261,7 @@ angular.module('Wardoo', [
 			$rootScope.isLoggedIn = $rootScope.globals.currentUser ? true : false;
 			$rootScope.isLoggedOut = $rootScope.globals.currentUser ? false : true;
 			
-			$rootScope.hideSidebar = current.$$route.hideSidebar === true;
+			$rootScope.hideSidebar = current.$$route.hideSidebar === true || $rootScope.isLoggedOut;
 			$rootScope.hideNavbar = current.$$route.hideNavbar === true || $rootScope.isLoggedOut;
 		});
 		
