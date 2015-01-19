@@ -1,29 +1,20 @@
-<section id="logo">
+<section id="logo" class="logo">
 	<a href="/">
 		<i class="fa fa-mortar-board"></i> Wardoo
 	</a>
-</section>
-
-<section id="user-info" ng-if="isLoggedIn">
-	<div id="user-photo">
-		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-	</div>
-	<div id="user-welcome">
-		<div>{{ 'AUTHENTICATION.WELCOME' | translate }}</div>
-		<div id="user-name">Vitor</div>
-	</div>
+	
+	<i class="fa fa-arrow-left" title="{{ 'SIDEBAR.HIDE' | translate }}" ng-click="toggleSidebarPreference()"></i>
 </section>
 
 <section id="navigation">
 	<nav>
 		<ul>
-			<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ 'HOME.TITLE' | translate }}</a></li>
-			<li><a href="/principals" ng-if="isLoggedIn"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ 'PRINCIPAL.TITLE' | translate }}</a></li>
-			<li><a href="/coordinators" ng-if="isLoggedIn"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ 'COORDINATOR.TITLE' | translate }}</a></li>
-			<li><a href="/teachers" ng-if="isLoggedIn"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ 'TEACHER.TITLE' | translate }}</a></li>
-			<li><a href="/responsibles" ng-if="isLoggedIn"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ 'RESPONSIBLE.TITLE' | translate }}</a></li>
-			<li><a href="/login" ng-if="isLoggedOut"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> {{ 'AUTHENTICATION.SIGNIN' | translate }}</a></li>
-			<li><a href="/logout" ng-if="isLoggedIn"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> {{ 'AUTHENTICATION.SIGNOUT' | translate }}</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> {{ 'HOME.TITLE' | translate }}</a></li>
+			<li><a href="/principals" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'PRINCIPAL.TITLE' | translate }}</a></li>
+			<li><a href="/coordinators" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'COORDINATOR.TITLE' | translate }}</a></li>
+			<li><a href="/teachers" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'TEACHER.TITLE' | translate }}</a></li>
+			<li><a href="/responsibles" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'RESPONSIBLE.TITLE' | translate }}</a></li>
+			<li><a href="/logout" ng-if="isLoggedIn"><i class="fa fa-sign-out"></i> {{ 'AUTHENTICATION.SIGNOUT' | translate }}</a></li>
 		</ul>
 	</nav>
 </section>

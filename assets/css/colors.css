@@ -2,14 +2,24 @@ body {
 	background-color: #EEEEEE;
 }
 
-main > section, form > section {
+main > section,
+form > section {
 	background-color: #FFFFFF;
 }
+
+/**
+ * Navbar.
+ */
 
 nav.navbar-default {
 	background-color: #FFFFFF;
 }
 
+body.no-sidebar nav.navbar-default {
+	background-color: #186FB6;
+}
+
+nav.navbar-default .navbar-nav > li > i,
 nav.navbar-default .navbar-nav > li > a,
 nav.navbar-default .navbar-nav > li > a:hover,
 nav.navbar-default .navbar-nav > li > a:focus,
@@ -19,22 +29,64 @@ nav.navbar-default .navbar-nav > li.open > a:focus,
 nav.navbar-default .navbar-nav > li.active > a,
 nav.navbar-default .navbar-nav > li.active > a:hover,
 nav.navbar-default .navbar-nav > li.active > a:focus {
-	background-color: #FFFFFF;
+	background-color: transparent;
 	color: #333333;
 }
 
-aside.col-md-2 {
+body.no-sidebar nav.navbar-default .navbar-nav > li i,
+body.no-sidebar nav.navbar-default .navbar-nav > li > a,
+body.no-sidebar nav.navbar-default .navbar-nav > li > a:hover,
+body.no-sidebar nav.navbar-default .navbar-nav > li > a:focus,
+body.no-sidebar nav.navbar-default .navbar-nav > li.open > a,
+body.no-sidebar nav.navbar-default .navbar-nav > li.open > a:hover,
+body.no-sidebar nav.navbar-default .navbar-nav > li.open > a:focus,
+body.no-sidebar nav.navbar-default .navbar-nav > li.active > a,
+body.no-sidebar nav.navbar-default .navbar-nav > li.active > a:hover,
+body.no-sidebar nav.navbar-default .navbar-nav > li.active > a:focus {
+	background-color: transparent;
+	color: #FFFFFF;
+}
+
+/**
+ * Left sidebar.
+ */
+
+aside {
 	background-color: #186FB6;
 	color: #FFFFFF;
 }
 
-aside.col-md-2 section a {
+aside section a {
 	color: #FFFFFF;
 }
 
-aside.col-md-2 nav > ul > li > a:hover {
+aside nav > ul > li > a:hover,
+aside nav > ul > li > a:focus,
+aside nav > ul > li > a:active {
+	color: #FFFFFF;
+	background-color: #0E436E;
+	text-decoration: none;
+}
+
+aside section#logo {
+	background-color: #1C7CC9;
+}
+
+aside section#logo > a {
+	color: #FFFFFF;
+}
+
+aside section#logo > i {
+	background-color: #186FB6;
+}
+
+aside section#logo > i:hover {
 	background-color: #0E436E;
 }
+
+/**
+ * Forms.
+ */
 
 form#login {
 	background-color: #FFFFFF;
@@ -43,6 +95,10 @@ form#login {
 form#login #logo {
 	color: #186FB6;
 }
+
+/**
+ * Tables.
+ */
 
 table.table > thead > tr > th {
 	border-color: #EEEEEE;
@@ -57,7 +113,21 @@ table.table > tfoot > tr > td {
 	color: #555555;
 }
 
+/**
+ * Glyphicons.
+ */
+
 span.glyphicon-user {
 	background: #AAAAAA;
 	color: #FFFFFF;
+}
+
+/**
+ * Mobile devices.
+ */
+
+@media only screen and (max-width : 385px) {
+	body.logged-out {
+		background-color: #FFFFFF;
+	}
 }

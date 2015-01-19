@@ -1,32 +1,43 @@
 <div class="container-fluid">
-	<div class="navbar-header">
-		<a href="#" ng-click="$root.hideSidebar = !$root.hideSidebar">
-			<div class="iconset top-menu-toggle-dark"></div>
-		</a>
-		
-		<ul class="nav navbar-nav">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'NAVIGATION.CREATE' | translate }} <span class="caret"></span></a>
-
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="/principals/add">{{ 'PRINCIPAL.SINGLE' | translate }}</a></li>
-					<li><a href="/coordinators/add">{{ 'COORDINATOR.SINGLE' | translate }}</a></li>
-					<li><a href="/teachers/add">{{ 'TEACHER.SINGLE' | translate }}</a></li>
-					<li><a href="/responsibles/add">{{ 'RESPONSIBLE.SINGLE' | translate }}</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+	<ul class="nav navbar-nav navbar-left">
+		<li ng-show="$root.hideSidebar">
+			<i class="fa fa-navicon mobile-icon" title="{{ 'SIDEBAR.SHOW' | translate }}" ng-click="toggleSidebarPreference()"></i>
+		</li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				<i class="fa fa-plus mobile-icon" style="display: none;"></i>
+				<span>{{ 'NAVIGATION.CREATE' | translate }} <i class="fa fa-caret-down"></i></span>
+			</a>
+			
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="/principals/add">{{ 'PRINCIPAL.SINGLE' | translate }}</a></li>
+				<li><a href="/coordinators/add">{{ 'COORDINATOR.SINGLE' | translate }}</a></li>
+				<li><a href="/teachers/add">{{ 'TEACHER.SINGLE' | translate }}</a></li>
+				<li><a href="/responsibles/add">{{ 'RESPONSIBLE.SINGLE' | translate }}</a></li>
+			</ul>
+		</li>
+	</ul>
 	
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vitor Santos <span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="/principals/add">{{ 'PERSON.ACCOUNT' | translate }}</a></li>
-					<li><a href="/logout">{{ 'AUTHENTICATION.SIGNOUT' | translate }}</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+	<ul class="nav navbar-nav navbar-center">
+		<li class="logo">
+			<a href="/">
+				<i class="fa fa-mortar-board"></i> Wardoo
+			</a>
+		</li>
+	</ul>
+	
+	<ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				<i class="fa fa-cog mobile-icon"></i>
+				<span>Vitor Santos <i class="fa fa-caret-down"></i></span>
+			</a>
+			
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="/principals/add">{{ 'PERSON.ACCOUNT' | translate }}</a></li>
+				<li><a href="/principals/add">{{ 'PERSON.PROFILE' | translate }}</a></li>
+				<li><a href="/logout">{{ 'AUTHENTICATION.SIGNOUT' | translate }}</a></li>
+			</ul>
+		</li>
+	</ul>
 </div>

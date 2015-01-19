@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('Home', []);
+angular.module('Navbar', []);
+angular.module('Sidebar', []);
 angular.module('Authentication', []);
 angular.module('Principal', []);
 angular.module('Coordinator', []);
@@ -9,6 +11,8 @@ angular.module('Responsible', []);
 
 angular.module('Wardoo', [
 	'Home',
+	'Navbar',
+	'Sidebar',
 	'Authentication',
 	'Principal',
 	'Coordinator',
@@ -29,7 +33,6 @@ angular.module('Wardoo', [
 		})
 		
 		.when('/login', {
-			title: 'Login',
 			controller: 'LoginController',
 			templateUrl: 'app/components/authentication/LoginView.html',
 			hideSidebar: true,
@@ -86,6 +89,8 @@ angular.module('Wardoo', [
 				'HOME.TITLE': 'Home',
 				'HOME.HELLOWORLD': 'Hello world!',
 				
+				'SIDEBAR.HIDE': 'Hide sidebar',
+				'SIDEBAR.SHOW': 'Show sidebar',
 				'NAVIGATION.TOGGLE': 'Toggle navigation',
 				'NAVIGATION.CREATE': 'Create',
 				
@@ -129,6 +134,7 @@ angular.module('Wardoo', [
 				'PERSON.PHONE': 'Phone',
 				'PERSON.PHONEALT': 'Secondary Phone',
 				'PERSON.ACCOUNT': 'My account',
+				'PERSON.PROFILE': 'My profile',
 				
 				'PRINCIPAL.TITLE': 'Principals',
 				'PRINCIPAL.SINGLE': 'Principal',
@@ -169,6 +175,8 @@ angular.module('Wardoo', [
 				'HOME.TITLE': 'Início',
 				'HOME.HELLOWORLD': 'Olá mundo!',
 				
+				'SIDEBAR.HIDE': 'Esconder menu lateral',
+				'SIDEBAR.SHOW': 'Exibir menu lateral',
 				'NAVIGATION.TOGGLE': 'Alternar menu',
 				'NAVIGATION.CREATE': 'Cadastrar',
 				
@@ -212,6 +220,7 @@ angular.module('Wardoo', [
 				'PERSON.PHONE': 'Telefone',
 				'PERSON.PHONEALT': 'Celular',
 				'PERSON.ACCOUNT': 'Minha conta',
+				'PERSON.PROFILE': 'Meu perfil',
 				
 				'PRINCIPAL.TITLE': 'Diretores',
 				'PRINCIPAL.SINGLE': 'Diretor',
@@ -253,16 +262,19 @@ angular.module('Wardoo', [
 		$locationProvider.html5Mode(true);
 }])
 
-.run(['$rootScope', '$location', '$cookieStore', '$http',
-	function($rootScope, $location, $cookieStore, $http) {
+.run(['$rootScope', '$location', '$cookieStore', '$http', '$window',
+	function($rootScope, $location, $cookieStore, $http, $window) {
+		$rootScope.windowWidth = $window.outerWidth;
+		angular.element($window).bind('resize',function() {
+			$rootScope.windowWidth = $window.outerWidth;
+			$rootScope.$apply('windowWidth');
+		});
+		
 		$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 			$rootScope.title = current.$$route.title;
 			
 			$rootScope.isLoggedIn = $rootScope.globals.currentUser ? true : false;
 			$rootScope.isLoggedOut = $rootScope.globals.currentUser ? false : true;
-			
-			$rootScope.hideSidebar = current.$$route.hideSidebar === true || $rootScope.isLoggedOut;
-			$rootScope.hideNavbar = current.$$route.hideNavbar === true || $rootScope.isLoggedOut;
 		});
 		
         $rootScope.globals = $cookieStore.get('globals') || {};

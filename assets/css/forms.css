@@ -6,8 +6,14 @@ form  {
 form#login {
 	box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 	margin: 80px auto;
-	padding: 15px 35px 45px;
-	width: 25%;
+	padding: 15px 35px;
+	width: 320px;
+}
+
+form#login section {
+	box-shadow: none;
+	padding: 0;
+	text-align: center;
 }
 
 form#login #logo {
@@ -104,4 +110,19 @@ form .error-text {
 .btn-success {
 	background-color: #5CB85C;
 	color: #FFFFFF;
+}
+
+@media only screen and (max-width : 1024px) {
+	form {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width : 385px) {
+	form#login {
+		box-shadow: none;
+		margin: 0 auto;
+		padding: 5% 10%;
+		width: 100%;
+	}
 }

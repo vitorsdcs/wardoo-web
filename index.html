@@ -6,7 +6,7 @@
 		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="assets/libs/font-awesome/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/solid.css" ng-if="isLoggedOut" />
 		<link rel="stylesheet" type="text/css" href="assets/css/typography.css" />
@@ -14,13 +14,11 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/base.css" />
 	</head>
-	<body>
+	<body ng-class="{'logged-in': isLoggedIn, 'logged-out': isLoggedOut, 'has-sidebar': !hideSidebar, 'no-sidebar': hideSidebar, 'has-navbar': !hideNavbar, 'no-navbar': hideNavbar}">
 		
-		<aside id="left-sidebar" class="col-md-2" ng-if="!hideSidebar" ng-show="!hideSidebar" ng-include="'app/shared/sidebar/SidebarView.html'"></aside>
-		
-		<main id="site-main" ng-class="{'col-md-10': !hideSidebar, 'navbar-padding': !hideNavbar}">
-			<nav id="toolbar" class="navbar navbar-default navbar-static-top" ng-if="!hideNavbar" ng-include="'app/shared/navbar/NavbarView.html'"></nav>
-			
+		<aside id="left-sidebar" ng-show="!hideSidebar" ng-include="'app/shared/sidebar/SidebarView.html'" ng-controller="SidebarController"></aside>
+		<main id="site-main">
+			<nav id="navbar" class="navbar navbar-default navbar-static-top" ng-show="!hideNavbar" ng-include="'app/shared/navbar/NavbarView.html'" ng-controller="NavbarController"></nav>
 			<main id="content" ng-view></main>
 		</div>
 		
@@ -34,6 +32,8 @@
 		<script src="assets/libs/jquery/jquery.min.js"></script>
 		<script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
 		<script src="app/app.js"></script>
+		<script src="app/shared/navbar/NavbarController.js"></script>
+		<script src="app/shared/sidebar/SidebarController.js"></script>
 		<script src="app/components/authentication/LoginController.js"></script>
 		<script src="app/components/authentication/LoginService.js"></script>
 		<script src="app/components/authentication/LogoutController.js"></script>
