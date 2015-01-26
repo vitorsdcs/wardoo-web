@@ -1,36 +1,39 @@
 <h1>{{ 'COORDINATOR.TITLE' | translate }}</h1>
 
 <a ng-click="createNewCoordinator()" class="btn btn-small btn-primary add-item">
-	+ {{ 'COORDINATOR.ADD' | translate }}
+	<i>+</i>
+	<span>{{ 'COORDINATOR.ADD' | translate }}</span>
 </a>
 
 <section>
-	<table class="table table-striped table-condensed" ng-hide="empty">
-		<thead>
-			<tr>
-				<th></th<>
-				<th>{{ 'PERSON.NAME' | translate}}</th>
-				<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
-				<th>{{ 'PERSON.CPF' | translate }}</th>
-				<th>{{ 'PERSON.RG' | translate }}</th>
-				<th>{{ 'PERSON.CONTACT' | translate }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="coordinator in coordinators">
-				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
-				<td>{{ coordinator.person.name.name }} {{ coordinator.person.name.surname }}</td>
-				<td>{{ coordinator.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(coordinator.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
-				<td>{{ coordinator.person.cpf }}</td>
-				<td>{{ coordinator.person.rg }}</td>
-				<td>
-					<ul>
-						<li ng-repeat="contact in coordinator.person.contacts">{{ contact.value }}</li>
-					</ul>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="table-container">
+		<table class="table table-striped table-condensed" ng-hide="empty">
+			<thead>
+				<tr>
+					<th class="photo"></th<>
+					<th>{{ 'PERSON.NAME' | translate}}</th>
+					<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+					<th>{{ 'PERSON.CPF' | translate }}</th>
+					<th>{{ 'PERSON.RG' | translate }}</th>
+					<th>{{ 'PERSON.CONTACT' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="coordinator in coordinators">
+					<td class="photo"><a href="/coordinator/{{ coordinator.person.id }}"><i class="fa fa-user"></i></a></td>
+					<td class="main-col"><a href="/coordinator/{{ coordinator.person.id }}">{{ coordinator.person.name.name }} {{ coordinator.person.name.surname }}</a></td>
+					<td>{{ coordinator.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(coordinator.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
+					<td>{{ coordinator.person.cpf }}</td>
+					<td>{{ coordinator.person.rg }}</td>
+					<td>
+						<ul>
+							<li ng-repeat="contact in coordinator.person.contacts">{{ contact.value }}</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div ng-show="loading">{{ 'COORDINATOR.LOADING' | translate }}</div>
 	<div ng-show="!loading && empty">{{ 'COORDINATOR.EMPTY' | translate }}</div>
 </section>

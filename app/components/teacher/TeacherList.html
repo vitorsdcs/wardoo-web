@@ -1,36 +1,39 @@
 <h1>{{ 'TEACHER.TITLE' | translate }}</h1>
 
 <a ng-click="createNewTeacher()" class="btn btn-small btn-primary add-item">
-	+ {{ 'TEACHER.ADD' | translate }}
+	<i>+</i>
+	<span>{{ 'TEACHER.ADD' | translate }}</span>
 </a>
 
 <section>
-	<table class="table table-striped table-condensed" ng-hide="empty">
-		<thead>
-			<tr>
-				<th></th<>
-				<th>{{ 'PERSON.NAME' | translate}}</th>
-				<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
-				<th>{{ 'PERSON.CPF' | translate }}</th>
-				<th>{{ 'PERSON.RG' | translate }}</th>
-				<th>{{ 'PERSON.CONTACT' | translate }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="teacher in teachers">
-				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
-				<td>{{ teacher.person.name.name }} {{ teacher.person.name.surname }}</td>
-				<td>{{ teacher.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(teacher.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
-				<td>{{ teacher.person.cpf }}</td>
-				<td>{{ teacher.person.rg }}</td>
-				<td>
-					<ul>
-						<li ng-repeat="contact in teacher.person.contacts">{{ contact.value }}</li>
-					</ul>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="table-container">
+		<table class="table table-striped table-condensed" ng-hide="empty">
+			<thead>
+				<tr>
+					<th class="photo"></th<>
+					<th>{{ 'PERSON.NAME' | translate}}</th>
+					<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+					<th>{{ 'PERSON.CPF' | translate }}</th>
+					<th>{{ 'PERSON.RG' | translate }}</th>
+					<th>{{ 'PERSON.CONTACT' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="teacher in teachers">
+					<td class="photo"><a href="/teacher/{{ teacher.person.id }}"><i class="fa fa-user"></i></a></td>
+					<td class="main-col"><a href="/teacher/{{ teacher.person.id }}">{{ teacher.person.name.name }} {{ teacher.person.name.surname }}</a></td>
+					<td>{{ teacher.person.birthDate | date: 'dd/MM/yyyy' }}</td>
+					<td>{{ teacher.person.cpf }}</td>
+					<td>{{ teacher.person.rg }}</td>
+					<td>
+						<ul>
+							<li ng-repeat="contact in teacher.person.contacts">{{ contact.value }}</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div ng-show="loading">{{ 'TEACHER.LOADING' | translate }}</div>
 	<div ng-show="!loading && empty">{{ 'TEACHER.EMPTY' | translate }}</div>
 </section>

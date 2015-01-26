@@ -1,6 +1,7 @@
 form  {
 	margin: 0 auto;
-	width: 70%;
+	max-width: 879px;
+	width: 100%;
 }
 
 form#login {
@@ -99,7 +100,6 @@ form .error-text {
 	text-transform: uppercase;
 	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	transition-delay: 0.2s;
-	min-width: 120px;
 }
 
 .btn-primary {
@@ -112,13 +112,11 @@ form .error-text {
 	color: #FFFFFF;
 }
 
-@media only screen and (max-width : 1024px) {
-	form {
-		width: 100%;
-	}
-}
+/**
+ * Mobile devices.
+ */
 
-@media only screen and (max-width : 385px) {
+@media screen and (max-width : 385px) {
 	form#login {
 		box-shadow: none;
 		margin: 0 auto;

@@ -1,36 +1,39 @@
 <h1>{{ 'PRINCIPAL.TITLE' | translate }}</h1>
 
 <a ng-click="createNewPrincipal()" class="btn btn-small btn-primary add-item">
-	+ {{ 'PRINCIPAL.ADD' | translate }}
+	<i>+</i>
+	<span>{{ 'PRINCIPAL.ADD' | translate }}</span>
 </a>
 
 <section>
-	<table class="table table-striped table-condensed" ng-hide="empty">
-		<thead>
-			<tr>
-				<th></th<>
-				<th>{{ 'PERSON.NAME' | translate}}</th>
-				<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
-				<th>{{ 'PERSON.CPF' | translate }}</th>
-				<th>{{ 'PERSON.RG' | translate }}</th>
-				<th>{{ 'PERSON.CONTACT' | translate }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="principal in principals">
-				<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span></td>
-				<td>{{ principal.person.name.name }} {{ principal.person.name.surname }}</td>
-				<td>{{ principal.person.birthDate | date: 'dd/MM/yyyy' }} ({{ calculateAge(principal.person.birthDate) }} {{ 'PERSON.YEARSOLD' | translate }})</td>
-				<td>{{ principal.person.cpf }}</td>
-				<td>{{ principal.person.rg }}</td>
-				<td>
-					<ul>
-						<li ng-repeat="contact in principal.person.contacts">{{ contact.value }}</li>
-					</ul>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="table-container">
+		<table class="table table-striped table-condensed" ng-hide="empty">
+			<thead>
+				<tr>
+					<th class="photo"></th<>
+					<th>{{ 'PERSON.NAME' | translate}}</th>
+					<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+					<th>{{ 'PERSON.CPF' | translate }}</th>
+					<th>{{ 'PERSON.RG' | translate }}</th>
+					<th>{{ 'PERSON.CONTACT' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="principal in principals">
+					<td class="photo"><a href="/principal/{{ principal.person.id }}"><i class="fa fa-user"></i></a></td>
+					<td class="main-col"><a href="/principal/{{ principal.person.id }}">{{ principal.person.name.name }} {{ principal.person.name.surname }}</a></td>
+					<td>{{ principal.person.birthDate | date: 'dd/MM/yyyy' }}</td>
+					<td>{{ principal.person.cpf }}</td>
+					<td>{{ principal.person.rg }}</td>
+					<td>
+						<ul>
+							<li ng-repeat="contact in principal.person.contacts">{{ contact.value }}</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div ng-show="loading">{{ 'PRINCIPAL.LOADING' | translate }}</div>
 	<div ng-show="!loading && empty">{{ 'PRINCIPAL.EMPTY' | translate }}</div>
 </section>

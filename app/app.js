@@ -23,6 +23,7 @@ angular.module('Wardoo', [
 	'ngResource',
 	'ngProgress',
 	'ngMask',
+	'ngAnimate',
 	'pascalprecht.translate',
 ])
 

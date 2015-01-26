@@ -1,4 +1,5 @@
-body {
+body,
+main#site-main {
 	background-color: #EEEEEE;
 }
 
@@ -76,14 +77,6 @@ aside section#logo > a {
 	color: #FFFFFF;
 }
 
-aside section#logo > i {
-	background-color: #186FB6;
-}
-
-aside section#logo > i:hover {
-	background-color: #0E436E;
-}
-
 /**
  * Forms.
  */
@@ -110,14 +103,18 @@ table.table > tfoot > tr > th,
 table.table > thead > tr > td,
 table.table > tbody > tr > td,
 table.table > tfoot > tr > td {
-	color: #555555;
+	color: #95989A;
+}
+
+table.table > tbody > tr > td a {
+	color: #576475;
 }
 
 /**
  * Glyphicons.
  */
 
-span.glyphicon-user {
+i.fa-user {
 	background: #AAAAAA;
 	color: #FFFFFF;
 }
@@ -126,7 +123,7 @@ span.glyphicon-user {
  * Mobile devices.
  */
 
-@media only screen and (max-width : 385px) {
+@media screen and (max-width : 385px) {
 	body.logged-out {
 		background-color: #FFFFFF;
 	}
