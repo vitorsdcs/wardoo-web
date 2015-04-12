@@ -11,7 +11,7 @@ angular.module('Authentication')
 				method: 'POST',
 				url: '/wardoo/oauth/token',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				data: $.param({ username: username, password: password, client_id: 'wardoo', grant_type: 'password' })
+				data: $.param({ username: username, password: password, school_id: 1, client_id: 'wardoo', grant_type: 'password' })
 			})
 				.success(function (response) {
 					callback(response);

@@ -21,69 +21,68 @@ angular.module('Wardoo', [
     'ngRoute',
     'ngCookies',
 	'ngResource',
-	'ngProgress',
 	'ngMask',
 	'ngAnimate',
 	'pascalprecht.translate',
 ])
 
-.config(['$routeProvider', '$locationProvider', '$httpProvider', '$translateProvider', function ($routeProvider, $locationProvider, $httpProvider, $translateProvider) {
-    $routeProvider
-		.when('/', {
-			templateUrl: 'app/components/home/HomeView.html',
-		})
-		
-		.when('/login', {
-			controller: 'LoginController',
-			templateUrl: 'app/components/authentication/LoginView.html',
-			hideSidebar: true,
-			hideNavbar: true,
-		})
-		
-		.when('/logout', {
-			controller: 'LogoutController',
-			template: '',
-		})
-		
-		.when('/principals', {
-			controller: 'PrincipalListController',
-			templateUrl: 'app/components/principal/PrincipalList.html',
-		})
-		
-		.when('/principals/add', {
-			controller: 'PrincipalCreationController',
-			templateUrl: 'app/components/principal/PrincipalCreation.html',
-		})
-		
-		.when('/coordinators', {
-			controller: 'CoordinatorListController',
-			templateUrl: 'app/components/coordinator/CoordinatorList.html',
-		})
-		
-		.when('/coordinators/add', {
-			controller: 'CoordinatorCreationController',
-			templateUrl: 'app/components/coordinator/CoordinatorCreation.html',
-		})
-		
-		.when('/teachers', {
-			controller: 'TeacherListController',
-			templateUrl: 'app/components/teacher/TeacherList.html',
-		})
-		
-		.when('/teachers/add', {
-			controller: 'TeacherCreationController',
-			templateUrl: 'app/components/teacher/TeacherCreation.html',
-		})
-		
-		.when('/responsibles', {
-			controller: 'ResponsibleListController',
-			templateUrl: 'app/components/responsible/ResponsibleList.html',
-		})
-		
-		.when('/responsibles/add', {
-			controller: 'ResponsibleCreationController',
-			templateUrl: 'app/components/responsible/ResponsibleCreation.html',
-		})
+.config(['$routeProvider', '$locationProvider', '$translateProvider',
+	function ($routeProvider, $locationProvider, $translateProvider) {
+		$routeProvider
+			.when('/', {
+				controller: 'HomeController',
+				templateUrl: 'app/components/home/HomeView.html',
+			})
+			
+			.when('/login', {
+				controller: 'LoginController',
+				templateUrl: 'app/components/authentication/LoginView.html',
+			})
+			
+			.when('/logout', {
+				controller: 'LogoutController',
+				template: '',
+			})
+			
+			.when('/principals', {
+				controller: 'PrincipalListController',
+				templateUrl: 'app/components/principal/PrincipalList.html',
+			})
+			
+			.when('/principals/add', {
+				controller: 'PrincipalCreationController',
+				templateUrl: 'app/components/principal/PrincipalCreation.html',
+			})
+			
+			.when('/coordinators', {
+				controller: 'CoordinatorListController',
+				templateUrl: 'app/components/coordinator/CoordinatorList.html',
+			})
+			
+			.when('/coordinators/add', {
+				controller: 'CoordinatorCreationController',
+				templateUrl: 'app/components/coordinator/CoordinatorCreation.html',
+			})
+			
+			.when('/teachers', {
+				controller: 'TeacherListController',
+				templateUrl: 'app/components/teacher/TeacherList.html',
+			})
+			
+			.when('/teachers/add', {
+				controller: 'TeacherCreationController',
+				templateUrl: 'app/components/teacher/TeacherCreation.html',
+			})
+			
+			.when('/responsibles', {
+				controller: 'ResponsibleListController',
+				templateUrl: 'app/components/responsible/ResponsibleList.html',
+			})
+			
+			.when('/responsibles/add', {
+				controller: 'ResponsibleCreationController',
+				templateUrl: 'app/components/responsible/ResponsibleCreation.html',
+			});
 		
 		$translateProvider
 			.translations('en', {
@@ -261,21 +260,18 @@ angular.module('Wardoo', [
 		$translateProvider.preferredLanguage('pt-br');
 		
 		$locationProvider.html5Mode(true);
-}])
+	}
+])
 
-.run(['$rootScope', '$location', '$cookieStore', '$http', '$window',
-	function($rootScope, $location, $cookieStore, $http, $window) {
-		$rootScope.windowWidth = $window.outerWidth;
-		angular.element($window).bind('resize',function() {
-			$rootScope.windowWidth = $window.outerWidth;
-			$rootScope.$apply('windowWidth');
-		});
-		
+.run(['$rootScope', '$cookieStore', '$http', '$location',
+	function($rootScope, $cookieStore, $http, $location) {
 		$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-			$rootScope.title = current.$$route.title;
-			
 			$rootScope.isLoggedIn = $rootScope.globals.currentUser ? true : false;
 			$rootScope.isLoggedOut = $rootScope.globals.currentUser ? false : true;
+			
+			if ($rootScope.isLoggedOut && current.$$route.originalPath != "/login") {
+				$location.path("/login");
+			}
 		});
 		
         $rootScope.globals = $cookieStore.get('globals') || {};

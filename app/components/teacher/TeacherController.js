@@ -3,10 +3,10 @@
 angular.module('Teacher')
 
 .controller('TeacherListController',
-	['$scope', 'TeachersFactory', 'TeacherFactory', '$location', 'ngProgress',
-	function ($scope, TeachersFactory, TeacherFactory, $location, ngProgress) {
-		ngProgress.color('#186FB6');
-		ngProgress.start();
+	['$rootScope', '$scope', 'TeachersFactory', 'TeacherFactory', '$location', '$filter',
+	function ($rootScope, $scope, TeachersFactory, TeacherFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('TEACHER.TITLE');
+		
 		$scope.loading = true;
 		$scope.empty = true;
 		$scope.teachers = TeachersFactory.query();
@@ -14,7 +14,6 @@ angular.module('Teacher')
 			$scope.teachers = result;
 			$scope.empty = $scope.teachers.length == 0;
 			$scope.loading = false;
-			ngProgress.complete();
 		});
 		
 		$scope.createNewTeacher = function() {
@@ -39,11 +38,14 @@ angular.module('Teacher')
 ])
 
 .controller('TeacherCreationController',
-	['$scope', 'TeachersFactory', '$location', '$filter',
-	function ($scope, TeachersFactory, $location, $filter) {
+	['$rootScope', '$scope', 'TeachersFactory', '$location', '$filter',
+	function ($rootScope, $scope, TeachersFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('TEACHER.CREATE');
+		
 		$scope.createNewTeacher = function () {
 			// Add role.
-			$scope.teacher.credential['user'] = {'role': 'TEACHER'};
+			$scope.teacher.user['role'] = 'TEACHER';
+			$scope.teacher.user['school'] = { 'id': $scope.teacher.school.id };
 			
 			// Sanitize contacts.
 			$scope.contacts = [];

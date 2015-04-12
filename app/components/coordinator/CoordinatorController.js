@@ -3,10 +3,10 @@
 angular.module('Coordinator')
 
 .controller('CoordinatorListController',
-	['$scope', 'CoordinatorsFactory', 'CoordinatorFactory', '$location', 'ngProgress',
-	function ($scope, CoordinatorsFactory, CoordinatorFactory, $location, ngProgress) {
-		ngProgress.color('#186FB6');
-		ngProgress.start();
+	['$rootScope', '$scope', 'CoordinatorsFactory', 'CoordinatorFactory', '$location', '$filter',
+	function ($rootScope, $scope, CoordinatorsFactory, CoordinatorFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('COORDINATOR.TITLE');
+		
 		$scope.loading = true;
 		$scope.empty = true;
 		$scope.coordinators = CoordinatorsFactory.query();
@@ -14,7 +14,6 @@ angular.module('Coordinator')
 			$scope.coordinators = result;
 			$scope.empty = $scope.coordinators.length == 0;
 			$scope.loading = false;
-			ngProgress.complete();
 		});
 		
 		$scope.createNewCoordinator = function() {
@@ -39,11 +38,14 @@ angular.module('Coordinator')
 ])
 
 .controller('CoordinatorCreationController',
-	['$scope', 'CoordinatorsFactory', '$location', '$filter',
-	function ($scope, CoordinatorsFactory, $location, $filter) {
+	['$rootScope', '$scope', 'CoordinatorsFactory', '$location', '$filter',
+	function ($rootScope, $scope, CoordinatorsFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('COORDINATOR.CREATE');
+		
 		$scope.createNewCoordinator = function () {
 			// Add role.
-			$scope.coordinator.credential['user'] = {'role': 'COORDINATOR'};
+			$scope.coordinator.user['role'] = 'COORDINATOR';
+			$scope.coordinator.user['school'] = { 'id': $scope.coordinator.school.id };
 			
 			// Sanitize contacts.
 			$scope.contacts = [];

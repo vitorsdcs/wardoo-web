@@ -1,99 +1,129 @@
-<form name="teachercreation">
-	<h1>{{ 'TEACHER.CREATE' | translate }}</h1>
+<form name="teachercreation" class="form-horizontal">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'CREDENTIAL.TITLE' | translate }}</h3>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group" ng-class="{'has-error': teachercreation.username.$dirty && (teachercreation.username.$error.required || teachercreation.username.$error.maxlength)}">
+				<label for="username" class="col-md-2 control-label">{{ 'CREDENTIAL.USERNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="username" name="username" class="form-control" ng-class="{'ng-filled': teacher.credential.username.length > 0}" ng-model="teacher.user.credential.username" ng-maxlength=255 required />
+					<div ng-show="teachercreation.username.$dirty && teachercreation.username.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="teachercreation.username.$dirty && teachercreation.username.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error': teachercreation.password.$dirty && (teachercreation.password.$error.required || teachercreation.password.$error.maxlength)}">
+				<label for="password" class="col-md-2 control-label">{{ 'CREDENTIAL.PASSWORD' | translate }}</label>
+				<div class="col-md-10">
+					<input type="password" id="password" name="password" class="form-control" ng-class="{'ng-filled': teacher.credential.password.length > 0}" ng-model="teacher.user.credential.password" ng-maxlength=255 required />
+					<div ng-show="teachercreation.password.$dirty && teachercreation.password.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="teachercreation.password.$dirty && teachercreation.password.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'PERSON.PERSONALINFO' | translate }}</h3>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group" ng-class="{'has-error': teachercreation.name.$dirty && (teachercreation.name.$error.required || teachercreation.name.$error.maxlength)}">
+				<label for="name" class="col-md-2 control-label">{{ 'PERSON.FIRSTNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="name" name="name" class="form-control" ng-class="{'ng-filled': teacher.person.name.name.length > 0}" ng-model="teacher.person.name.name" ng-maxlength=255 required />
+					<div ng-show="teachercreation.name.$dirty && teachercreation.name.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="teachercreation.name.$dirty && teachercreation.name.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.surname.$dirty && (teachercreation.surname.$error.required || teachercreation.surname.$error.maxlength)}">
+				<label for="surname" class="col-md-2 control-label">{{ 'PERSON.LASTNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="surname" name="surname" class="form-control" ng-class="{'ng-filled': teacher.person.name.surname.length > 0}" ng-model="teacher.person.name.surname" ng-maxlength=255 required />
+					<div ng-show="teachercreation.surname.$dirty && teachercreation.surname.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="teachercreation.surname.$dirty && teachercreation.surname.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.birthdate.$dirty && teachercreation.birthdate.$error.mask-validate}">
+				<label for="birthdate" class="col-md-2 control-label">{{ 'PERSON.BIRTHDATE' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="birthdate" name="birthdate" class="form-control" ng-class="{'ng-filled': teacher.person.birthDate.length > 0}" ng-model="teacher.person.birthDate" mask="99/99/9999" mask-validate="true" required />
+					<div ng-show="teachercreation.birthdate.$dirty && teachercreation.birthdate.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.DATE' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="genre" class="col-md-2 control-label">{{ 'PERSON.GENRE' | translate }}</label>
+				<div class="col-md-10">
+					<div><input type="radio" name="genre" id="genre-male" ng-model="teacher.person.genre" value="MALE" required /> {{ 'PERSON.MALE' | translate }}</div>
+					<div><input type="radio" name="genre" id="genre-female" ng-model="teacher.person.genre" value="FEMALE" required /> {{ 'PERSON.FEMALE' | translate }}</div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.cpf.$dirty && teachercreation.cpf.$error.mask-validate}">
+				<label for="cpf" class="col-md-2 control-label">{{ 'PERSON.CPF' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="cpf" name="cpf" class="form-control" ng-class="{'ng-filled': teacher.person.cpf.length > 0}" ng-model="teacher.person.cpf" mask="999.999.999-99" mask-validate="true" />
+					<div ng-show="teachercreation.cpf.$dirty && teachercreation.cpf.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.CPF' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.rg.$dirty && teachercreation.rg.$error.maxlength}">
+				<label for="rg" class="col-md-2 control-label">{{ 'PERSON.RG' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="rg" name="rg" class="form-control" ng-class="{'ng-filled': teacher.person.rg.length > 0}" ng-model="teacher.person.rg" ng-maxlength=20 />
+					<div ng-show="teachercreation.rg.$dirty && teachercreation.rg.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 20}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.email.$dirty && (teachercreation.email.$invalid && visitedEmail && !teachercreation.email.$error.required || teachercreation.email.$error.maxlength)}">
+				<label for="email" class="col-md-2 control-label">{{ 'PERSON.EMAIL' | translate }}</label>
+				<div class="col-md-10">
+					<input type="email" id="email" name="email" class="form-control" ng-class="{'ng-filled': teacher.person.contacts[0].value.length > 0}" ng-model="teacher.person.contacts[0].value" ng-maxlength=255 ng-blur="visitedEmail = true" />
+					<div ng-show="teachercreation.email.$dirty && teachercreation.email.$invalid && visitedEmail && !teachercreation.email.$error.required"><small class="help-block">{{ 'FORM.ERROR.EMAIL' | translate }}</small></div>
+					<div ng-show="teachercreation.email.$dirty && teachercreation.email.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.phone.$dirty && teachercreation.phone.$error.mask-validate}">
+				<label for="phone" class="col-md-2 control-label">{{ 'PERSON.PHONE' | translate }}</label>
+				<div class="col-md-10">
+					<input type="tel" id="phone" name="phone" class="form-control" ng-class="{'ng-filled': teacher.person.contacts[1].value.length > 0}" ng-model="teacher.person.contacts[1].value" mask="(99) 9?9999-9999" mask-validate="true" />
+					<div ng-show="teachercreation.phone.$dirty && teachercreation.phone.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.PHONE' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': teachercreation.phonealt.$dirty && teachercreation.phonealt.$error.mask-validate}">
+				<label for="phone-secondary" class="col-md-2 control-label">{{ 'PERSON.PHONEALT' | translate }}</label>
+				<div class="col-md-10">
+					<input type="tel" id="phone-secondary" name="phonealt" class="form-control" ng-class="{'ng-filled': teacher.person.contacts[2].value.length > 0}" ng-model="teacher.person.contacts[2].value" mask="(99) 9?9999-9999" mask-validate="true" />
+					<div ng-show="teachercreation.phonealt.$dirty && teachercreation.phonealt.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.PHONE' | translate }}</small></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'SCHOOL.TITLE' | translate }}</h3>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group" ng-class="{'has-error': teachercreation.school.$dirty && teachercreation.school.$error.required}">
+				<label for="school" class="col-md-2 control-label">{{ 'SCHOOL.TITLE' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="school" ng-model="teacher.school.id" required>
+						<option value="1">Wardoo High School</option>
+					</select>
+					<div ng-show="teachercreation.school.$dirty && teachercreation.school.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+		</div>
 	
-	<section>
-		<h4>{{ 'CREDENTIAL.TITLE' | translate }}</h4>
-		
-		<div class="control-group floating-label">
-			<input type="text" id="username" name="username" class="form-control" ng-class="{'ng-filled': teacher.credential.username.length > 0}" ng-model="teacher.credential.username" ng-maxlength=255 required />
-			<label for="username">{{ 'CREDENTIAL.USERNAME' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div ng-show="teachercreation.username.$dirty && teachercreation.username.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</div>
-			<div ng-show="teachercreation.username.$dirty && teachercreation.username.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</div>
+		<div class="panel-footer">
+			<a ng-click="createNewTeacher()" class="btn btn-small btn-success" ng-disabled="teachercreation.$invalid">{{ 'FORM.SAVE' | translate }}</a>
+			<a ng-click="cancel()" class="btn btn-small btn-default">{{ 'FORM.CANCEL' | translate }}</a>
 		</div>
-		
-		<div class="control-group floating-label">
-			<input type="password" id="password" name="password" class="form-control" ng-class="{'ng-filled': teacher.credential.password.length > 0}" ng-model="teacher.credential.password" ng-maxlength=255 required />
-			<label for="password">{{ 'CREDENTIAL.PASSWORD' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div ng-show="teachercreation.password.$dirty && teachercreation.password.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</div>
-			<div ng-show="teachercreation.password.$dirty && teachercreation.password.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</div>
-		</div>
-	</section>
-	
-	<section>
-		<h4>{{ 'PERSON.PERSONALINFO' | translate }}</h4>
-		
-		<div class="control-group floating-label">
-			<input type="text" id="name" name="name" class="form-control" ng-class="{'ng-filled': teacher.person.name.name.length > 0}" ng-model="teacher.person.name.name" ng-maxlength=255 required />
-			<label for="name">{{ 'PERSON.FIRSTNAME' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div ng-show="teachercreation.name.$dirty && teachercreation.name.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</div>
-			<div ng-show="teachercreation.name.$dirty && teachercreation.name.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="text" id="surname" name="surname" class="form-control" ng-class="{'ng-filled': teacher.person.name.surname.length > 0}" ng-model="teacher.person.name.surname" ng-maxlength=255 required />
-			<label for="surname">{{ 'PERSON.LASTNAME' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div ng-show="teachercreation.surname.$dirty && teachercreation.surname.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</div>
-			<div ng-show="teachercreation.surname.$dirty && teachercreation.surname.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="text" id="birthdate" name="birthdate" class="form-control" ng-class="{'ng-filled': teacher.person.birthDate.length > 0}" ng-model="teacher.person.birthDate" mask="99/99/9999" mask-validate="true" required />
-			<label for="birthdate">{{ 'PERSON.BIRTHDATE' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div ng-show="teachercreation.birthdate.$dirty && teachercreation.birthdate.$error.mask-validate" class="error-text">{{ 'FORM.ERROR.DATE' | translate }}</div>
-		</div>
-		
-		<div class="control-group">
-			<label for="genre">{{ 'PERSON.GENRE' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div><input type="radio" name="genre" id="genre-male" ng-model="teacher.person.genre" value="MALE" required /> {{ 'PERSON.MALE' | translate }}</div>
-			<div><input type="radio" name="genre" id="genre-female" ng-model="teacher.person.genre" value="FEMALE" required /> {{ 'PERSON.FEMALE' | translate }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="text" id="cpf" name="cpf" class="form-control" ng-class="{'ng-filled': teacher.person.cpf.length > 0}" ng-model="teacher.person.cpf" mask="999.999.999-99" mask-validate="true" />
-			<label for="cpf">{{ 'PERSON.CPF' | translate }}</label>
-			<div ng-show="teachercreation.cpf.$dirty && teachercreation.cpf.$error.mask-validate" class="error-text">{{ 'FORM.ERROR.CPF' | translate }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="text" id="rg" name="rg" class="form-control" ng-class="{'ng-filled': teacher.person.rg.length > 0}" ng-model="teacher.person.rg" ng-maxlength=20 />
-			<label for="rg">{{ 'PERSON.RG' | translate }}</label>
-			<div ng-show="teachercreation.rg.$dirty && teachercreation.rg.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 20}' }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="email" id="email" name="email" class="form-control" ng-class="{'ng-filled': teacher.person.contacts[0].value.length > 0}" ng-model="teacher.person.contacts[0].value" ng-maxlength=255 ng-blur="visitedEmail = true" />
-			<label for="email">{{ 'PERSON.EMAIL' | translate }}</label>
-			<div ng-show="teachercreation.email.$dirty && teachercreation.email.$invalid && visitedEmail && !teachercreation.email.$error.required" class="error-text">{{ 'FORM.ERROR.EMAIL' | translate }}</div>
-			<div ng-show="teachercreation.email.$dirty && teachercreation.email.$error.maxlength" class="error-text">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="tel" id="phone" name="phone" class="form-control" ng-class="{'ng-filled': teacher.person.contacts[1].value.length > 0}" ng-model="teacher.person.contacts[1].value" mask="(99) 9?9999-9999" mask-validate="true" />
-			<label for="phone">{{ 'PERSON.PHONE' | translate }}</label>
-			<div ng-show="teachercreation.phone.$dirty && teachercreation.phone.$error.mask-validate" class="error-text">{{ 'FORM.ERROR.PHONE' | translate }}</div>
-		</div>
-		
-		<div class="control-group floating-label">
-			<input type="tel" id="phone-secondary" name="phonealt" class="form-control" ng-class="{'ng-filled': teacher.person.contacts[2].value.length > 0}" ng-model="teacher.person.contacts[2].value" mask="(99) 9?9999-9999" mask-validate="true" />
-			<label for="phone-secondary">{{ 'PERSON.PHONEALT' | translate }}</label>
-			<div ng-show="teachercreation.phonealt.$dirty && teachercreation.phonealt.$error.mask-validate" class="error-text">{{ 'FORM.ERROR.PHONE' | translate }}</div>
-		</div>
-	</section>
-	
-	<section>
-		<h4>{{ 'SCHOOL.TITLE' | translate }}</h4>
-		
-		<div class="control-group floating-label">
-			<select class="form-control" name="school" ng-model="teacher.school.id" required>
-				<option value="1">Wardoo High School</option>
-			</select>
-			<label for="school">{{ 'SCHOOL.TITLE' | translate }} <span class="field-required" title="{{ 'FORM.WARNING.REQUIRED' | translate }}">*</span></label>
-			<div ng-show="teachercreation.school.$dirty && teachercreation.school.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</div>
-		</div>
-	</section>
-	
-	<div class="control-group">
-		<a ng-click="createNewTeacher()" class="btn btn-small btn-success" ng-disabled="teachercreation.$invalid">{{ 'FORM.SAVE' | translate }}</a>
-		<a ng-click="cancel()" class="btn btn-small btn-default">{{ 'FORM.CANCEL' | translate }}</a>
 	</div>
 </form>

@@ -1,23 +1,40 @@
-<form id="login" name="form" ng-submit="login()" role="form">
-	<section id="logo" class="logo">
-		<i class="fa fa-mortar-board"></i> Wardoo
-	</section>
-	
-	<div ng-show="error" class="alert alert-danger">{{ error }}</div>
-	
-	<p>{{ 'AUTHENTICATION.DESCRIPTION' | translate }}</p>
-	
-	<div class="control-group floating-label no-margin">
-		<input type="text" name="username" id="username" class="form-control" placeholder="{{ 'CREDENTIAL.USERNAME' | translate }}" ng-model="username" required/>
-		<span ng-show="form.username.$dirty && form.username.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</span>
+<div id="bg-overlay" class="bg-img"></div>
+
+<div class="cls-header cls-header-lg">
+	<div class="cls-brand">
+		<a class="box-inline" href="index.html">
+			<span class="brand-title"><i class="fa fa-mortar-board"></i> Wardoo</span>
+		</a>
 	</div>
-	
-	<div class="control-group floating-label">
-		<input type="password" name="password" id="password" class="form-control" placeholder="{{ 'CREDENTIAL.PASSWORD' | translate }}" ng-model="password" required/>
-		<span ng-show="form.password.$dirty && form.password.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</span>
+</div>
+
+<div class="cls-content">
+	<div class="cls-content-sm panel">
+		<div class="panel-body">
+			<p class="pad-btm">{{ 'AUTHENTICATION.DESCRIPTION' | translate }}</p>
+			<form id="login" name="form" ng-submit="login()" role="form">
+				<div ng-show="error" class="alert alert-danger">{{ error }}</div>
+				
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-user"></i></div>
+						<input type="text" name="username" id="username" class="form-control" placeholder="{{ 'CREDENTIAL.USERNAME' | translate }}" ng-model="username" required/>
+						<span ng-show="form.username.$dirty && form.username.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+						<input type="password" name="password" id="password" class="form-control" placeholder="{{ 'CREDENTIAL.PASSWORD' | translate }}" ng-model="password" required/>
+						<span ng-show="form.password.$dirty && form.password.$error.required" class="error-text">{{ 'FORM.ERROR.REQUIRED' | translate }}</span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-lg btn-success btn-block">{{ 'AUTHENTICATION.LOGIN' | translate }}</button>
+				</div>
+			</form>
+		</div>
 	</div>
-	
-	<div class="control-group">
-		<button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-lg btn-success btn-block">{{ 'AUTHENTICATION.LOGIN' | translate }}</button>
-	</div>
-</form>
+</div>

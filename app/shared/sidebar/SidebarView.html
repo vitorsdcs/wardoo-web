@@ -1,20 +1,54 @@
-<section id="logo" class="logo">
-	<a href="/">
-		<i class="fa fa-mortar-board"></i> Wardoo
-	</a>
+<div id="mainnav">
+	<div id="mainnav-shortcut"></div>
 	
-	<i class="fa fa-navicon" title="{{ 'SIDEBAR.HIDE' | translate }}" ng-click="toggleSidebarPreference()"></i>
-</section>
-
-<section id="navigation">
-	<nav>
-		<ul>
-			<li><a href="/"><i class="fa fa-home"></i> {{ 'HOME.TITLE' | translate }}</a></li>
-			<li><a href="/principals" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'PRINCIPAL.TITLE' | translate }}</a></li>
-			<li><a href="/coordinators" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'COORDINATOR.TITLE' | translate }}</a></li>
-			<li><a href="/teachers" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'TEACHER.TITLE' | translate }}</a></li>
-			<li><a href="/responsibles" ng-if="isLoggedIn"><i class="fa fa-list"></i> {{ 'RESPONSIBLE.TITLE' | translate }}</a></li>
-			<li><a href="/logout" ng-if="isLoggedIn"><i class="fa fa-sign-out"></i> {{ 'AUTHENTICATION.SIGNOUT' | translate }}</a></li>
-		</ul>
-	</nav>
-</section>
+	<div id="mainnav-menu-wrap">
+		<div class="nano">
+			<div class="nano-content">
+				<ul id="mainnav-menu" class="list-group">
+					<li class="list-header"></li>
+					
+					<li>
+						<a href="/">
+							<i class="fa fa-home"></i>
+							<span class="menu-title">
+								<strong>{{ 'HOME.TITLE' | translate }}</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/principals">
+							<i class="fa fa-list"></i>
+							<span class="menu-title">
+								<strong>{{ 'PRINCIPAL.TITLE' | translate }}</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/coordinators">
+							<i class="fa fa-list"></i>
+							<span class="menu-title">
+								<strong>{{ 'COORDINATOR.TITLE' | translate }}</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/teachers">
+							<i class="fa fa-list"></i>
+							<span class="menu-title">
+								<strong>{{ 'TEACHER.TITLE' | translate }}</strong>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/responsibles">
+							<i class="fa fa-list"></i>
+							<span class="menu-title">
+								<strong>{{ 'RESPONSIBLE.TITLE' | translate }}</strong>
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

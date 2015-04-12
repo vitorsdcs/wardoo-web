@@ -3,10 +3,10 @@
 angular.module('Responsible')
 
 .controller('ResponsibleListController',
-	['$scope', 'ResponsiblesFactory', 'ResponsibleFactory', '$location', 'ngProgress',
-	function ($scope, ResponsiblesFactory, ResponsibleFactory, $location, ngProgress) {
-		ngProgress.color('#186FB6');
-		ngProgress.start();
+	['$rootScope', '$scope', 'ResponsiblesFactory', 'ResponsibleFactory', '$location', '$filter',
+	function ($rootScope, $scope, ResponsiblesFactory, ResponsibleFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('RESPONSIBLE.TITLE');
+		
 		$scope.loading = true;
 		$scope.empty = true;
 		$scope.responsibles = ResponsiblesFactory.query();
@@ -14,7 +14,6 @@ angular.module('Responsible')
 			$scope.responsibles = result;
 			$scope.empty = $scope.responsibles.length == 0;
 			$scope.loading = false;
-			ngProgress.complete();
 		});
 		
 		$scope.createNewResponsible = function() {
@@ -39,11 +38,14 @@ angular.module('Responsible')
 ])
 
 .controller('ResponsibleCreationController',
-	['$scope', 'ResponsiblesFactory', '$location', '$filter',
-	function ($scope, ResponsiblesFactory, $location, $filter) {
+	['$rootScope', '$scope', 'ResponsiblesFactory', '$location', '$filter',
+	function ($rootScope, $scope, ResponsiblesFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('RESPONSIBLE.CREATE');
+		
 		$scope.createNewResponsible = function () {
 			// Add role.
-			$scope.responsible.credential['user'] = {'role': 'RESPONSIBLE'};
+			$scope.responsible.user['role'] = 'RESPONSIBLE';
+			$scope.responsible.user['school'] = { 'id': $scope.responsible.school.id };
 			
 			// Sanitize contacts.
 			$scope.contacts = [];

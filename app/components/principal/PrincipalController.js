@@ -3,10 +3,10 @@
 angular.module('Principal')
 
 .controller('PrincipalListController',
-	['$scope', 'PrincipalsFactory', 'PrincipalFactory', '$location', 'ngProgress',
-	function ($scope, PrincipalsFactory, PrincipalFactory, $location, ngProgress) {
-		ngProgress.color('#186FB6');
-		ngProgress.start();
+	['$rootScope', '$scope', 'PrincipalsFactory', 'PrincipalFactory', '$location', '$filter',
+	function ($rootScope, $scope, PrincipalsFactory, PrincipalFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('PRINCIPAL.TITLE');
+		
 		$scope.loading = true;
 		$scope.empty = true;
 		$scope.principals = PrincipalsFactory.query();
@@ -14,7 +14,6 @@ angular.module('Principal')
 			$scope.principals = result;
 			$scope.empty = $scope.principals.length == 0;
 			$scope.loading = false;
-			ngProgress.complete();
 		});
 		
 		$scope.createNewPrincipal = function() {
@@ -39,11 +38,14 @@ angular.module('Principal')
 ])
 
 .controller('PrincipalCreationController',
-	['$scope', 'PrincipalsFactory', '$location', '$filter',
-	function ($scope, PrincipalsFactory, $location, $filter) {
+	['$rootScope', '$scope', 'PrincipalsFactory', '$location', '$filter',
+	function ($rootScope, $scope, PrincipalsFactory, $location, $filter) {
+		$rootScope.title = $filter('translate')('PRINCIPAL.CREATE');
+		
 		$scope.createNewPrincipal = function () {
 			// Add role.
-			$scope.principal.credential['user'] = {'role': 'PRINCIPAL'};
+			$scope.principal.user['role'] = 'PRINCIPAL';
+			$scope.principal.user['school'] = { 'id': $scope.principal.school.id };
 			
 			// Sanitize contacts.
 			$scope.contacts = [];

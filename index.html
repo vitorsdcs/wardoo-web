@@ -1,25 +1,44 @@
+<!DOCTYPE html>
 <html ng-app="Wardoo">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<base href="/">
 		<title ng-bind="title ? title + ' &#124; Wardoo' : 'Wardoo'">Wardoo</title>
 		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
-		<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap/css//bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="assets/libs/font-awesome/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="assets/css/solid.css" ng-if="isLoggedOut" />
-		<link rel="stylesheet" type="text/css" href="assets/css/typography.css" />
-		<link rel="stylesheet" type="text/css" href="assets/css/colors.css" />
-		<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
-		<link rel="stylesheet" type="text/css" href="assets/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/animate-css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/morris-js/morris.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/switchery/switchery.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-select/bootstrap-select.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/pace/pace.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/libs/nifty/nifty.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/libs/nifty/themes/type-c/theme-dark.min.css" />
 	</head>
-	<body ng-class="{'logged-in': isLoggedIn, 'logged-out': isLoggedOut, 'has-sidebar': !hideSidebar, 'no-sidebar': hideSidebar, 'has-navbar': !hideNavbar, 'no-navbar': hideNavbar}">
-		
-		<aside id="left-sidebar" ng-show="!hideSidebar" ng-include="'app/shared/sidebar/SidebarView.html'" ng-controller="SidebarController"></aside>
-		<main id="site-main">
-			<nav id="navbar" class="navbar navbar-default navbar-static-top" ng-show="!hideNavbar" ng-include="'app/shared/navbar/NavbarView.html'" ng-controller="NavbarController"></nav>
-			<main id="content" ng-view></main>
+	<body>
+		<div id="container" ng-class="{'effect mainnav-lg': isLoggedIn, 'cls-container': isLoggedOut}">
+			<div id="login-container" ng-if="isLoggedOut" ng-view></div>
+			
+			<header id="navbar" ng-include="'app/shared/navbar/NavbarView.html'" ng-if="isLoggedIn"></header>
+			
+			<div class="boxed" ng-if="isLoggedIn">
+				<div id="content-container">
+					<div id="page-title">
+						<h1 class="page-header text-overflow">{{ title }}</h1>
+					</div>
+					
+					<div id="page-content" ng-view></div>
+				</div>
+				
+				<nav id="mainnav-container" ng-include="'app/shared/sidebar/SidebarView.html'"></nav>
+			</div>
+			
+			<footer id="footer">
+				<p class="pad-lft">&#0169; 2015 Waven</p>
+			</footer>
 		</div>
 		
 		<script src="assets/libs/angular/angular.min.js"></script>
@@ -28,13 +47,20 @@
 		<script src="assets/libs/angular/angular-resource.min.js"></script>
 		<script src="assets/libs/angular/angular-translate.min.js"></script>
 		<script src="assets/libs/angular/angular-animate.min.js"></script>
-		<script src="assets/libs/angular/ngProgress.min.js"></script>
 		<script src="assets/libs/angular/ngMask.min.js"></script>
 		<script src="assets/libs/jquery/jquery.min.js"></script>
+		<script src="assets/libs/nifty/nifty.min.js"></script>
 		<script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/libs/pace/pace.min.js"></script>
+		<script src="assets/libs/fast-click/fastclick.min.js"></script>
+		<script src="assets/libs/morris-js/morris.min.js"></script>
+		<script src="assets/libs/morris-js/raphael-js/raphael.min.js"></script>
+		<script src="assets/libs/sparkline/jquery.sparkline.min.js"></script>
+		<script src="assets/libs/skycons/skycons.min.js"></script>
+		<script src="assets/libs/switchery/switchery.min.js"></script>
+		<script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 		<script src="app/app.js"></script>
-		<script src="app/shared/navbar/NavbarController.js"></script>
-		<script src="app/shared/sidebar/SidebarController.js"></script>
+		<script src="app/components/home/HomeController.js"></script>
 		<script src="app/components/authentication/LoginController.js"></script>
 		<script src="app/components/authentication/LoginService.js"></script>
 		<script src="app/components/authentication/LogoutController.js"></script>
