@@ -62,8 +62,9 @@ angular.module('Principal')
 			// Convert date to Y-m-d format.
 			$scope.principal.person.birthDate = $filter('date')(new Date($scope.principal.person.birthDate), 'yyyy-MM-dd');
 			
-			PrincipalsFactory.create($scope.principal);
-			$location.path('/principals');
+			PrincipalsFactory.create($scope.principal, function() {
+				$location.path('/principals');
+			});
 		}
 		
 		$scope.cancel = function() {

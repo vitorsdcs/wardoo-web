@@ -62,8 +62,9 @@ angular.module('Teacher')
 			// Convert date to Y-m-d format.
 			$scope.teacher.person.birthDate = $filter('date')(new Date($scope.teacher.person.birthDate), 'yyyy-MM-dd');
 			
-			TeachersFactory.create($scope.teacher);
-			$location.path('/teachers');
+			TeachersFactory.create($scope.teacher, function() {
+				$location.path('/teachers');
+			});
 		}
 		
 		$scope.cancel = function() {

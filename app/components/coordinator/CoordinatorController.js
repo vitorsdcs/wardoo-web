@@ -62,8 +62,9 @@ angular.module('Coordinator')
 			// Convert date to Y-m-d format.
 			$scope.coordinator.person.birthDate = $filter('date')(new Date($scope.coordinator.person.birthDate), 'yyyy-MM-dd');
 			
-			CoordinatorsFactory.create($scope.coordinator);
-			$location.path('/coordinators');
+			CoordinatorsFactory.create($scope.coordinator, function () {
+				$location.path('/coordinators');
+			});
 		}
 		
 		$scope.cancel = function() {
