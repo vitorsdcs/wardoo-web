@@ -20,20 +20,24 @@
 						<th>{{ 'RESPONSIBLE.LEGAL' | translate }}</th>
 						<th>{{ 'RESPONSIBLE.FINANCIAL' | translate }}</th>
 						<th>{{ 'RESPONSIBLE.REMOVAL' | translate }}</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="student in students">
-						<td class="text-center">
-							<a href="/student/{{ student.person.id }}">
-								<img class="img-circle img-user media-object" src="assets/img/av1.png">
-							</a>
-						</td>
-						<td><a href="/student/{{ student.person.id }}">{{ student.person.name.name }} {{ student.person.name.surname }}</a></td>
+						<td class="text-center"><img class="img-circle img-user media-object" src="assets/img/av1.png"></td>
+						<td>{{ student.person.name.name }} {{ student.person.name.surname }}</td>
 						<td>{{ student.person.birthDate | date: 'dd/MM/yyyy' }}</td>
 						<td>{{ student.responsibles.legalResponsible.responsible.person.name.name }} {{ student.responsibles.legalResponsible.responsible.person.name.surname }}</td>
 						<td>{{ student.responsibles.financialResponsible.responsible.person.name.name }} {{ student.responsibles.financialResponsible.responsible.person.name.surname }}</td>
 						<td>{{ student.responsibles.removalResponsible.responsible.person.name.name }} {{ student.responsibles.removalResponsible.responsible.person.name.surname }}</td>
+						<td>
+							<a ng-click="editStudentProfile(student.id)">
+								<button class="btn btn-default" title="{{ 'STUDENT.EDIT' | translate }}">
+									<i class="fa fa-edit"></i>
+								</button>
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -20,16 +20,13 @@
 						<th>{{ 'PERSON.CPF' | translate }}</th>
 						<th>{{ 'PERSON.RG' | translate }}</th>
 						<th>{{ 'PERSON.CONTACT' | translate }}</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="principal in principals">
-						<td class="text-center">
-							<a href="/principal/{{ principal.person.id }}">
-								<img class="img-circle img-user media-object" src="assets/img/av1.png">
-							</a>
-						</td>
-						<td><a href="/principal/{{ principal.person.id }}">{{ principal.person.name.name }} {{ principal.person.name.surname }}</a></td>
+						<td class="text-center"><img class="img-circle img-user media-object" src="assets/img/av1.png"></td>
+						<td>{{ principal.person.name.name }} {{ principal.person.name.surname }}</td>
 						<td>{{ principal.person.birthDate | date: 'dd/MM/yyyy' }}</td>
 						<td>{{ principal.person.cpf }}</td>
 						<td>{{ principal.person.rg }}</td>
@@ -37,6 +34,13 @@
 							<ul>
 								<li ng-repeat="contact in principal.person.contacts">{{ contact.value }}</li>
 							</ul>
+						</td>
+						<td>
+							<a ng-click="editPrincipalProfile(principal.id)">
+								<button class="btn btn-default" title="{{ 'PRINCIPAL.EDIT' | translate }}">
+									<i class="fa fa-edit"></i>
+								</button>
+							</a>
 						</td>
 					</tr>
 				</tbody>

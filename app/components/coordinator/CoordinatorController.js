@@ -20,19 +20,8 @@ angular.module('Coordinator')
 			$location.path('/coordinators/add');
 		};
 		
-		$scope.editCoordinator = function(coordinatorId) {
-			$location.path('/coordinators/' + coordinatorId);
-		};
-		
-		$scope.deleteCoordinator = function(coordinatorId) {
-			CoordinatorFactory.delete({ id: coordinatorId });
-			$scope.coordinators = CoordinatorsFactory.query();
-		};
-		
-		$scope.calculateAge = function calculateAge(birthDate) {
-			var ageDifMs = Date.now() - new Date(birthDate).getTime();
-			var ageDate = new Date(ageDifMs);
-			return Math.abs(ageDate.getUTCFullYear() - 1970);
+		$scope.editCoordinatorProfile = function(coordinatorId) {
+			$location.path('/coordinator/' + coordinatorId + '/edit/profile');
 		};
 	}
 ])
@@ -62,7 +51,44 @@ angular.module('Coordinator')
 			// Convert date to Y-m-d format.
 			$scope.coordinator.person.birthDate = $filter('date')(new Date($scope.coordinator.person.birthDate), 'yyyy-MM-dd');
 			
-			CoordinatorsFactory.create($scope.coordinator, function () {
+			CoordinatorsFactory.create($scope.coordinator, function() {
+				$location.path('/coordinators');
+			});
+		}
+		
+		$scope.cancel = function() {
+			$location.path('/coordinators');
+		};
+	}
+])
+
+.controller('CoordinatorEditProfileController',
+	['$rootScope', '$scope', 'CoordinatorsFactory', 'CoordinatorFactory', '$location', '$filter', '$routeParams',
+	function ($rootScope, $scope, CoordinatorsFactory, CoordinatorFactory, $location, $filter, $routeParams) {
+		$rootScope.title = $filter('translate')('COORDINATOR.EDIT');
+		
+		$scope.coordinator = CoordinatorFactory.show({id: $routeParams.id});
+		$scope.coordinator.$promise.then(function (result) {
+			$scope.coordinator.person.birthDate = $filter('date')($scope.coordinator.person.birthDate, 'dd/MM/yyyy');
+		});
+		
+		$scope.updateCoordinator = function () {
+			// Sanitize contacts.
+			$scope.contacts = [];
+			for (var contact in $scope.coordinator.person.contacts) {
+				if ($scope.coordinator.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.coordinator.person.contacts[contact].type = 'EMAIL';
+				else
+					$scope.coordinator.person.contacts[contact].type = 'PHONE';
+				
+				$scope.contacts.push($scope.coordinator.person.contacts[contact]);
+			}
+			$scope.coordinator.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.coordinator.person.birthDate = $filter('date')(new Date($scope.coordinator.person.birthDate), 'yyyy-MM-dd');
+			
+			CoordinatorFactory.update($scope.coordinator, function() {
 				$location.path('/coordinators');
 			});
 		}

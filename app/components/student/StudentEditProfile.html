@@ -1,0 +1,162 @@
+<form name="studentcreation" class="form-horizontal">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'PERSON.PERSONALINFO' | translate }}</h3>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group" ng-class="{'has-error': studentcreation.name.$dirty && (studentcreation.name.$error.required || studentcreation.name.$error.maxlength)}">
+				<label for="name" class="col-md-2 control-label">{{ 'PERSON.FIRSTNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="name" name="name" class="form-control" ng-class="{'ng-filled': student.person.name.name.length > 0}" ng-model="student.person.name.name" ng-maxlength=255 required />
+					<div ng-show="studentcreation.name.$dirty && studentcreation.name.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="studentcreation.name.$dirty && studentcreation.name.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.surname.$dirty && (studentcreation.surname.$error.required || studentcreation.surname.$error.maxlength)}">
+				<label for="surname" class="col-md-2 control-label">{{ 'PERSON.LASTNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="surname" name="surname" class="form-control" ng-class="{'ng-filled': student.person.name.surname.length > 0}" ng-model="student.person.name.surname" ng-maxlength=255 required />
+					<div ng-show="studentcreation.surname.$dirty && studentcreation.surname.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="studentcreation.surname.$dirty && studentcreation.surname.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.birthdate.$dirty && studentcreation.birthdate.$error.mask-validate}">
+				<label for="birthdate" class="col-md-2 control-label">{{ 'PERSON.BIRTHDATE' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="birthdate" name="birthdate" class="form-control" ng-class="{'ng-filled': student.person.birthDate.length > 0}" ng-model="student.person.birthDate" mask="99/99/9999" mask-validate="true" required />
+					<div ng-show="studentcreation.birthdate.$dirty && studentcreation.birthdate.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.DATE' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="genre" class="col-md-2 control-label">{{ 'PERSON.GENRE' | translate }}</label>
+				<div class="col-md-10">
+					<div><input type="radio" name="genre" id="genre-male" ng-model="student.person.genre" value="MALE" required /> {{ 'PERSON.MALE' | translate }}</div>
+					<div><input type="radio" name="genre" id="genre-female" ng-model="student.person.genre" value="FEMALE" required /> {{ 'PERSON.FEMALE' | translate }}</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'RESPONSIBLE.TITLE' | translate }}</h3>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group" ng-class="{'has-error': studentcreation.legalResponsible.$dirty && studentcreation.legalResponsible.$error.required}">
+				<label for="legalResponsible" class="col-md-2 control-label">{{ 'RESPONSIBLE.LEGAL' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="legalResponsible" ng-model="student.responsibles.legalResponsible.responsible.id" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+						<option value="{{ responsible.id }}" ng-repeat="responsible in responsibles">
+							{{ responsible.person.name.name }} {{ responsible.person.name.surname }} ({{ 'PERSON.CPF' | translate }}: {{ responsible.person.cpf }})
+						</option>
+					</select>
+					<div ng-show="studentcreation.legalResponsible.$dirty && studentcreation.legalResponsible.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.legalResponsibleparentage.$dirty && studentcreation.legalResponsibleparentage.$error.required}">
+				<label for="legalResponsibleparentage" class="col-md-2 control-label">{{ 'PARENTAGE.TITLE' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="legalResponsibleparentage" ng-model="student.responsibles.legalResponsible.parentage" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+						<option value="FATHER">{{ 'PARENTAGE.FATHER' | translate }}</option>
+						<option value="MOTHER">{{ 'PARENTAGE.MOTHER' | translate }}</option>
+						<option value="GRANDFATHER">{{ 'PARENTAGE.GRANDFATHER' | translate }}</option>
+						<option value="GRANDMOTHER">{{ 'PARENTAGE.GRANDMOTHER' | translate }}</option>
+						<option value="STEPFATHER">{{ 'PARENTAGE.STEPFATHER' | translate }}</option>
+						<option value="STEPMOTHER">{{ 'PARENTAGE.STEPMOTHER' | translate }}</option>
+						<option value="BROTHER">{{ 'PARENTAGE.BROTHER' | translate }}</option>
+						<option value="SISTER">{{ 'PARENTAGE.SISTER' | translate }}</option>
+						<option value="STEPBROTHER">{{ 'PARENTAGE.STEPBROTHER' | translate }}</option>
+						<option value="STEPSISTER">{{ 'PARENTAGE.STEPSISTER' | translate }}</option>
+						<option value="UNCLE">{{ 'PARENTAGE.UNCLE' | translate }}</option>
+						<option value="AUNT">{{ 'PARENTAGE.AUNT' | translate }}</option>
+						<option value="COUSIN">{{ 'PARENTAGE.COUSIN' | translate }}</option>
+					</select>
+					<div ng-show="studentcreation.legalResponsibleparentage.$dirty && studentcreation.legalResponsibleparentage.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.financialResponsible.$dirty && studentcreation.financialResponsible.$error.required}">
+				<label for="financialResponsible" class="col-md-2 control-label">{{ 'RESPONSIBLE.FINANCIAL' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="financialResponsible" ng-model="student.responsibles.financialResponsible.responsible.id" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+						<option value="{{ responsible.id }}" ng-repeat="responsible in responsibles">
+							{{ responsible.person.name.name }} {{ responsible.person.name.surname }} ({{ 'PERSON.CPF' | translate }}: {{ responsible.person.cpf }})
+						</option>
+					</select>
+					<div ng-show="studentcreation.financialResponsible.$dirty && studentcreation.financialResponsible.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.financialResponsibleparentage.$dirty && studentcreation.financialResponsibleparentage.$error.required}">
+				<label for="financialResponsibleparentage" class="col-md-2 control-label">{{ 'PARENTAGE.TITLE' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="financialResponsibleparentage" ng-model="student.responsibles.financialResponsible.parentage" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+						<option value="FATHER">{{ 'PARENTAGE.FATHER' | translate }}</option>
+						<option value="MOTHER">{{ 'PARENTAGE.MOTHER' | translate }}</option>
+						<option value="GRANDFATHER">{{ 'PARENTAGE.GRANDFATHER' | translate }}</option>
+						<option value="GRANDMOTHER">{{ 'PARENTAGE.GRANDMOTHER' | translate }}</option>
+						<option value="STEPFATHER">{{ 'PARENTAGE.STEPFATHER' | translate }}</option>
+						<option value="STEPMOTHER">{{ 'PARENTAGE.STEPMOTHER' | translate }}</option>
+						<option value="BROTHER">{{ 'PARENTAGE.BROTHER' | translate }}</option>
+						<option value="SISTER">{{ 'PARENTAGE.SISTER' | translate }}</option>
+						<option value="STEPBROTHER">{{ 'PARENTAGE.STEPBROTHER' | translate }}</option>
+						<option value="STEPSISTER">{{ 'PARENTAGE.STEPSISTER' | translate }}</option>
+						<option value="UNCLE">{{ 'PARENTAGE.UNCLE' | translate }}</option>
+						<option value="AUNT">{{ 'PARENTAGE.AUNT' | translate }}</option>
+						<option value="COUSIN">{{ 'PARENTAGE.COUSIN' | translate }}</option>
+					</select>
+					<div ng-show="studentcreation.financialResponsibleparentage.$dirty && studentcreation.financialResponsibleparentage.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.removalResponsible.$dirty && studentcreation.removalResponsible.$error.required}">
+				<label for="removalResponsible" class="col-md-2 control-label">{{ 'RESPONSIBLE.REMOVAL' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="removalResponsible" ng-model="student.responsibles.removalResponsible.responsible.id" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+						<option value="{{ responsible.id }}" ng-repeat="responsible in responsibles">
+							{{ responsible.person.name.name }} {{ responsible.person.name.surname }} ({{ 'PERSON.CPF' | translate }}: {{ responsible.person.cpf }})
+						</option>
+					</select>
+					<div ng-show="studentcreation.removalResponsible.$dirty && studentcreation.removalResponsible.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': studentcreation.removalResponsibleparentage.$dirty && studentcreation.removalResponsibleparentage.$error.required}">
+				<label for="removalResponsibleparentage" class="col-md-2 control-label">{{ 'PARENTAGE.TITLE' | translate }}</label>
+				<div class="col-md-10">
+					<select class="form-control" name="removalResponsibleparentage" ng-model="student.responsibles.removalResponsible.parentage" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+						<option value="FATHER">{{ 'PARENTAGE.FATHER' | translate }}</option>
+						<option value="MOTHER">{{ 'PARENTAGE.MOTHER' | translate }}</option>
+						<option value="GRANDFATHER">{{ 'PARENTAGE.GRANDFATHER' | translate }}</option>
+						<option value="GRANDMOTHER">{{ 'PARENTAGE.GRANDMOTHER' | translate }}</option>
+						<option value="STEPFATHER">{{ 'PARENTAGE.STEPFATHER' | translate }}</option>
+						<option value="STEPMOTHER">{{ 'PARENTAGE.STEPMOTHER' | translate }}</option>
+						<option value="BROTHER">{{ 'PARENTAGE.BROTHER' | translate }}</option>
+						<option value="SISTER">{{ 'PARENTAGE.SISTER' | translate }}</option>
+						<option value="STEPBROTHER">{{ 'PARENTAGE.STEPBROTHER' | translate }}</option>
+						<option value="STEPSISTER">{{ 'PARENTAGE.STEPSISTER' | translate }}</option>
+						<option value="UNCLE">{{ 'PARENTAGE.UNCLE' | translate }}</option>
+						<option value="AUNT">{{ 'PARENTAGE.AUNT' | translate }}</option>
+						<option value="COUSIN">{{ 'PARENTAGE.COUSIN' | translate }}</option>
+					</select>
+					<div ng-show="studentcreation.removalResponsibleparentage.$dirty && studentcreation.removalResponsibleparentage.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel-footer">
+			<a ng-click="updateStudent()" class="btn btn-small btn-success" ng-disabled="studentcreation.$invalid">{{ 'FORM.SAVE' | translate }}</a>
+			<a ng-click="cancel()" class="btn btn-small btn-default">{{ 'FORM.CANCEL' | translate }}</a>
+		</div>
+	</div>
+</form>

@@ -20,19 +20,8 @@ angular.module('Student')
 			$location.path('/students/add');
 		};
 		
-		$scope.editStudent = function(studentId) {
-			$location.path('/students/' + studentId);
-		};
-		
-		$scope.deleteStudent = function(studentId) {
-			StudentFactory.delete({ id: studentId });
-			$scope.students = StudentsFactory.query();
-		};
-		
-		$scope.calculateAge = function calculateAge(birthDate) {
-			var ageDifMs = Date.now() - new Date(birthDate).getTime();
-			var ageDate = new Date(ageDifMs);
-			return Math.abs(ageDate.getUTCFullYear() - 1970);
+		$scope.editStudentProfile = function(studentId) {
+			$location.path('/student/' + studentId + '/edit/profile');
 		};
 	}
 ])
@@ -56,6 +45,40 @@ angular.module('Student')
 			$scope.student.person.birthDate = $filter('date')(new Date($scope.student.person.birthDate), 'yyyy-MM-dd');
 			
 			StudentsFactory.create($scope.student, function() {
+				$location.path('/students');
+			});
+		}
+		
+		$scope.cancel = function() {
+			$location.path('/students');
+		};
+	}
+])
+
+.controller('StudentEditProfileController',
+	['$rootScope', '$scope', 'StudentsFactory', 'StudentFactory', 'ResponsiblesFactory', '$location', '$filter', '$routeParams',
+	function ($rootScope, $scope, StudentsFactory, StudentFactory, ResponsiblesFactory, $location, $filter, $routeParams) {
+		$rootScope.title = $filter('translate')('STUDENT.EDIT');
+		
+		$scope.responsibles = ResponsiblesFactory.query();
+		$scope.responsibles.$promise.then(function (result) {
+			$scope.responsibles = result;
+		});
+		
+		$scope.student = StudentFactory.show({id: $routeParams.id});
+		$scope.student.$promise.then(function (result) {
+			$scope.student.person.birthDate = $filter('date')($scope.student.person.birthDate, 'dd/MM/yyyy');
+		});
+		
+		$scope.updateStudent = function () {
+			// Add role.
+			$scope.student.user['role'] = 'STUDENT';
+			$scope.student.user['school'] = { 'id': $scope.student.school.id };
+			
+			// Convert date to Y-m-d format.
+			$scope.student.person.birthDate = $filter('date')(new Date($scope.student.person.birthDate), 'yyyy-MM-dd');
+			
+			StudentFactory.update($scope.student, function() {
 				$location.path('/students');
 			});
 		}

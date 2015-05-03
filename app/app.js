@@ -56,6 +56,11 @@ angular.module('Wardoo', [
 				templateUrl: 'app/components/principal/PrincipalCreation.html',
 			})
 			
+			.when('/principal/:id/edit/profile', {
+				controller: 'PrincipalEditProfileController',
+				templateUrl: 'app/components/principal/PrincipalEditProfile.html',
+			})
+			
 			.when('/coordinators', {
 				controller: 'CoordinatorListController',
 				templateUrl: 'app/components/coordinator/CoordinatorList.html',
@@ -64,6 +69,11 @@ angular.module('Wardoo', [
 			.when('/coordinators/add', {
 				controller: 'CoordinatorCreationController',
 				templateUrl: 'app/components/coordinator/CoordinatorCreation.html',
+			})
+			
+			.when('/coordinator/:id/edit/profile', {
+				controller: 'CoordinatorEditProfileController',
+				templateUrl: 'app/components/coordinator/CoordinatorEditProfile.html',
 			})
 			
 			.when('/teachers', {
@@ -76,6 +86,11 @@ angular.module('Wardoo', [
 				templateUrl: 'app/components/teacher/TeacherCreation.html',
 			})
 			
+			.when('/teacher/:id/edit/profile', {
+				controller: 'TeacherEditProfileController',
+				templateUrl: 'app/components/teacher/TeacherEditProfile.html',
+			})
+			
 			.when('/responsibles', {
 				controller: 'ResponsibleListController',
 				templateUrl: 'app/components/responsible/ResponsibleList.html',
@@ -86,6 +101,11 @@ angular.module('Wardoo', [
 				templateUrl: 'app/components/responsible/ResponsibleCreation.html',
 			})
 			
+			.when('/responsible/:id/edit/profile', {
+				controller: 'ResponsibleEditProfileController',
+				templateUrl: 'app/components/responsible/ResponsibleEditProfile.html',
+			})
+			
 			.when('/students', {
 				controller: 'StudentListController',
 				templateUrl: 'app/components/student/StudentList.html',
@@ -94,6 +114,11 @@ angular.module('Wardoo', [
 			.when('/students/add', {
 				controller: 'StudentCreationController',
 				templateUrl: 'app/components/student/StudentCreation.html',
+			})
+			
+			.when('/student/:id/edit/profile', {
+				controller: 'StudentEditProfileController',
+				templateUrl: 'app/components/student/StudentEditProfile.html',
 			});
 		
 		$translateProvider
@@ -155,6 +180,7 @@ angular.module('Wardoo', [
 				'PRINCIPAL.LOADING': 'Loading principals...',
 				'PRINCIPAL.EMPTY': 'No principals found.',
 				'PRINCIPAL.CREATE': 'Create principal',
+				'PRINCIPAL.EDIT': 'Edit principal',
 				
 				'COORDINATOR.TITLE': 'Coordinators',
 				'COORDINATOR.SINGLE': 'Coordinator',
@@ -162,6 +188,7 @@ angular.module('Wardoo', [
 				'COORDINATOR.LOADING': 'Loading coordinators...',
 				'COORDINATOR.EMPTY': 'No coordinators found.',
 				'COORDINATOR.CREATE': 'Create coordinator',
+				'COORDINATOR.EDIT': 'Edit coordinator',
 				
 				'TEACHER.TITLE': 'Teachers',
 				'TEACHER.SINGLE': 'Teacher',
@@ -169,6 +196,7 @@ angular.module('Wardoo', [
 				'TEACHER.LOADING': 'Loading teachers...',
 				'TEACHER.EMPTY': 'No teachers found.',
 				'TEACHER.CREATE': 'Create teacher',
+				'TEACHER.EDIT': 'Edit teacher',
 				
 				'RESPONSIBLE.TITLE': 'Responsibles',
 				'RESPONSIBLE.SINGLE': 'Responsible',
@@ -176,6 +204,7 @@ angular.module('Wardoo', [
 				'RESPONSIBLE.LOADING': 'Loading responsibles...',
 				'RESPONSIBLE.EMPTY': 'No responsibles found.',
 				'RESPONSIBLE.CREATE': 'Create responsible',
+				'RESPONSIBLE.EDIT': 'Edit responsible',
 				'RESPONSIBLE.LEGAL': 'Legal responsible',
 				'RESPONSIBLE.FINANCIAL': 'Financial responsible',
 				'RESPONSIBLE.REMOVAL': 'Removal responsible',
@@ -186,6 +215,7 @@ angular.module('Wardoo', [
 				'STUDENT.LOADING': 'Loading students...',
 				'STUDENT.EMPTY': 'No students found.',
 				'STUDENT.CREATE': 'Create student',
+				'STUDENT.EDIT': 'Edit student',
 				
 				'PARENTAGE.TITLE': 'Parentage',
 				'PARENTAGE.FATHER': 'Father',
@@ -260,6 +290,7 @@ angular.module('Wardoo', [
 				'PRINCIPAL.LOADING': 'Carregando diretores...',
 				'PRINCIPAL.EMPTY': 'Nenhum diretor encontrado.',
 				'PRINCIPAL.CREATE': 'Cadastrar diretor',
+				'PRINCIPAL.EDIT': 'Editar diretor',
 				
 				'COORDINATOR.TITLE': 'Coordenadores',
 				'COORDINATOR.SINGLE': 'Coordenador',
@@ -267,6 +298,7 @@ angular.module('Wardoo', [
 				'COORDINATOR.LOADING': 'Carregando coordenadores...',
 				'COORDINATOR.EMPTY': 'Nenhum coordenador encontrado.',
 				'COORDINATOR.CREATE': 'Cadastrar coordenador',
+				'COORDINATOR.EDIT': 'Editar coordenador',
 				
 				'TEACHER.TITLE': 'Professores',
 				'TEACHER.SINGLE': 'Professor',
@@ -274,6 +306,7 @@ angular.module('Wardoo', [
 				'TEACHER.LOADING': 'Carregando professores...',
 				'TEACHER.EMPTY': 'Nenhum professor encontrado.',
 				'TEACHER.CREATE': 'Cadastrar professor',
+				'TEACHER.EDIT': 'Editar professor',
 				
 				'RESPONSIBLE.TITLE': 'Responsáveis',
 				'RESPONSIBLE.SINGLE': 'Responsável',
@@ -281,6 +314,7 @@ angular.module('Wardoo', [
 				'RESPONSIBLE.LOADING': 'Carregando responsáveis...',
 				'RESPONSIBLE.EMPTY': 'Nenhum responsável encontrado.',
 				'RESPONSIBLE.CREATE': 'Cadastrar responsável',
+				'RESPONSIBLE.EDIT': 'Editar responsável',
 				'RESPONSIBLE.LEGAL': 'Responsável legal',
 				'RESPONSIBLE.FINANCIAL': 'Responsável financeiro',
 				'RESPONSIBLE.REMOVAL': 'Responsável pela retirada',
@@ -291,6 +325,7 @@ angular.module('Wardoo', [
 				'STUDENT.LOADING': 'Carregando alunos...',
 				'STUDENT.EMPTY': 'Nenhum aluno encontrado.',
 				'STUDENT.CREATE': 'Cadastrar aluno',
+				'STUDENT.EDIT': 'Editar aluno',
 				
 				'PARENTAGE.TITLE': 'Parentesco',
 				'PARENTAGE.FATHER': 'Pai',

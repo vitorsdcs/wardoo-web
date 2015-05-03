@@ -20,19 +20,8 @@ angular.module('Responsible')
 			$location.path('/responsibles/add');
 		};
 		
-		$scope.editResponsible = function(responsibleId) {
-			$location.path('/responsibles/' + responsibleId);
-		};
-		
-		$scope.deleteResponsible = function(responsibleId) {
-			ResponsibleFactory.delete({ id: responsibleId });
-			$scope.responsibles = ResponsiblesFactory.query();
-		};
-		
-		$scope.calculateAge = function calculateAge(birthDate) {
-			var ageDifMs = Date.now() - new Date(birthDate).getTime();
-			var ageDate = new Date(ageDifMs);
-			return Math.abs(ageDate.getUTCFullYear() - 1970);
+		$scope.editResponsibleProfile = function(responsibleId) {
+			$location.path('/responsible/' + responsibleId + '/edit/profile');
 		};
 	}
 ])
@@ -63,6 +52,43 @@ angular.module('Responsible')
 			$scope.responsible.person.birthDate = $filter('date')(new Date($scope.responsible.person.birthDate), 'yyyy-MM-dd');
 			
 			ResponsiblesFactory.create($scope.responsible, function() {
+				$location.path('/responsibles');
+			});
+		}
+		
+		$scope.cancel = function() {
+			$location.path('/responsibles');
+		};
+	}
+])
+
+.controller('ResponsibleEditProfileController',
+	['$rootScope', '$scope', 'ResponsiblesFactory', 'ResponsibleFactory', '$location', '$filter', '$routeParams',
+	function ($rootScope, $scope, ResponsiblesFactory, ResponsibleFactory, $location, $filter, $routeParams) {
+		$rootScope.title = $filter('translate')('RESPONSIBLE.EDIT');
+		
+		$scope.responsible = ResponsibleFactory.show({id: $routeParams.id});
+		$scope.responsible.$promise.then(function (result) {
+			$scope.responsible.person.birthDate = $filter('date')($scope.responsible.person.birthDate, 'dd/MM/yyyy');
+		});
+		
+		$scope.updateResponsible = function () {
+			// Sanitize contacts.
+			$scope.contacts = [];
+			for (var contact in $scope.responsible.person.contacts) {
+				if ($scope.responsible.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.responsible.person.contacts[contact].type = 'EMAIL';
+				else
+					$scope.responsible.person.contacts[contact].type = 'PHONE';
+				
+				$scope.contacts.push($scope.responsible.person.contacts[contact]);
+			}
+			$scope.responsible.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.responsible.person.birthDate = $filter('date')(new Date($scope.responsible.person.birthDate), 'yyyy-MM-dd');
+			
+			ResponsibleFactory.update($scope.responsible, function() {
 				$location.path('/responsibles');
 			});
 		}

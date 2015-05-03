@@ -1,0 +1,89 @@
+<form name="coordinatorcreation" class="form-horizontal">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'PERSON.PERSONALINFO' | translate }}</h3>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.name.$dirty && (coordinatorcreation.name.$error.required || coordinatorcreation.name.$error.maxlength)}">
+				<label for="name" class="col-md-2 control-label">{{ 'PERSON.FIRSTNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="name" name="name" class="form-control" ng-class="{'ng-filled': coordinator.person.name.name.length > 0}" ng-model="coordinator.person.name.name" ng-maxlength=255 required />
+					<div ng-show="coordinatorcreation.name.$dirty && coordinatorcreation.name.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="coordinatorcreation.name.$dirty && coordinatorcreation.name.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.surname.$dirty && (coordinatorcreation.surname.$error.required || coordinatorcreation.surname.$error.maxlength)}">
+				<label for="surname" class="col-md-2 control-label">{{ 'PERSON.LASTNAME' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="surname" name="surname" class="form-control" ng-class="{'ng-filled': coordinator.person.name.surname.length > 0}" ng-model="coordinator.person.name.surname" ng-maxlength=255 required />
+					<div ng-show="coordinatorcreation.surname.$dirty && coordinatorcreation.surname.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+					<div ng-show="coordinatorcreation.surname.$dirty && coordinatorcreation.surname.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.birthdate.$dirty && coordinatorcreation.birthdate.$error.mask-validate}">
+				<label for="birthdate" class="col-md-2 control-label">{{ 'PERSON.BIRTHDATE' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="birthdate" name="birthdate" class="form-control" ng-class="{'ng-filled': coordinator.person.birthDate.length > 0}" ng-model="coordinator.person.birthDate" mask="99/99/9999" mask-validate="true" required />
+					<div ng-show="coordinatorcreation.birthdate.$dirty && coordinatorcreation.birthdate.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.DATE' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="genre" class="col-md-2 control-label">{{ 'PERSON.GENRE' | translate }}</label>
+				<div class="col-md-10">
+					<div><input type="radio" name="genre" id="genre-male" ng-model="coordinator.person.genre" value="MALE" required /> {{ 'PERSON.MALE' | translate }}</div>
+					<div><input type="radio" name="genre" id="genre-female" ng-model="coordinator.person.genre" value="FEMALE" required /> {{ 'PERSON.FEMALE' | translate }}</div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.cpf.$dirty && coordinatorcreation.cpf.$error.mask-validate}">
+				<label for="cpf" class="col-md-2 control-label">{{ 'PERSON.CPF' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="cpf" name="cpf" class="form-control" ng-class="{'ng-filled': coordinator.person.cpf.length > 0}" ng-model="coordinator.person.cpf" mask="999.999.999-99" mask-validate="true" />
+					<div ng-show="coordinatorcreation.cpf.$dirty && coordinatorcreation.cpf.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.CPF' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.rg.$dirty && coordinatorcreation.rg.$error.maxlength}">
+				<label for="rg" class="col-md-2 control-label">{{ 'PERSON.RG' | translate }}</label>
+				<div class="col-md-10">
+					<input type="text" id="rg" name="rg" class="form-control" ng-class="{'ng-filled': coordinator.person.rg.length > 0}" ng-model="coordinator.person.rg" ng-maxlength=20 />
+					<div ng-show="coordinatorcreation.rg.$dirty && coordinatorcreation.rg.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 20}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.email.$dirty && (coordinatorcreation.email.$invalid && visitedEmail && !coordinatorcreation.email.$error.required || coordinatorcreation.email.$error.maxlength)}">
+				<label for="email" class="col-md-2 control-label">{{ 'PERSON.EMAIL' | translate }}</label>
+				<div class="col-md-10">
+					<input type="email" id="email" name="email" class="form-control" ng-class="{'ng-filled': coordinator.person.contacts[0].value.length > 0}" ng-model="coordinator.person.contacts[0].value" ng-maxlength=255 ng-blur="visitedEmail = true" />
+					<div ng-show="coordinatorcreation.email.$dirty && coordinatorcreation.email.$invalid && visitedEmail && !coordinatorcreation.email.$error.required"><small class="help-block">{{ 'FORM.ERROR.EMAIL' | translate }}</small></div>
+					<div ng-show="coordinatorcreation.email.$dirty && coordinatorcreation.email.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.phone.$dirty && coordinatorcreation.phone.$error.mask-validate}">
+				<label for="phone" class="col-md-2 control-label">{{ 'PERSON.PHONE' | translate }}</label>
+				<div class="col-md-10">
+					<input type="tel" id="phone" name="phone" class="form-control" ng-class="{'ng-filled': coordinator.person.contacts[1].value.length > 0}" ng-model="coordinator.person.contacts[1].value" mask="(99) 9?9999-9999" mask-validate="true" />
+					<div ng-show="coordinatorcreation.phone.$dirty && coordinatorcreation.phone.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.PHONE' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<div class="form-group" ng-class="{'has-error': coordinatorcreation.phonealt.$dirty && coordinatorcreation.phonealt.$error.mask-validate}">
+				<label for="phone-secondary" class="col-md-2 control-label">{{ 'PERSON.PHONEALT' | translate }}</label>
+				<div class="col-md-10">
+					<input type="tel" id="phone-secondary" name="phonealt" class="form-control" ng-class="{'ng-filled': coordinator.person.contacts[2].value.length > 0}" ng-model="coordinator.person.contacts[2].value" mask="(99) 9?9999-9999" mask-validate="true" />
+					<div ng-show="coordinatorcreation.phonealt.$dirty && coordinatorcreation.phonealt.$error.mask-validate"><small class="help-block">{{ 'FORM.ERROR.PHONE' | translate }}</small></div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="panel-footer">
+			<a ng-click="updateCoordinator()" class="btn btn-small btn-success" ng-disabled="coordinatorcreation.$invalid">{{ 'FORM.SAVE' | translate }}</a>
+			<a ng-click="cancel()" class="btn btn-small btn-default">{{ 'FORM.CANCEL' | translate }}</a>
+		</div>
+	</div>
+</form>

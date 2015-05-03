@@ -20,16 +20,13 @@
 						<th>{{ 'PERSON.CPF' | translate }}</th>
 						<th>{{ 'PERSON.RG' | translate }}</th>
 						<th>{{ 'PERSON.CONTACT' | translate }}</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="coordinator in coordinators">
-						<td class="text-center">
-							<a href="/coordinator/{{ coordinator.person.id }}">
-								<img class="img-circle img-user media-object" src="assets/img/av1.png">
-							</a>
-						</td>
-						<td><a href="/coordinator/{{ coordinator.person.id }}">{{ coordinator.person.name.name }} {{ coordinator.person.name.surname }}</a></td>
+						<td class="text-center"><img class="img-circle img-user media-object" src="assets/img/av1.png"></td>
+						<td>{{ coordinator.person.name.name }} {{ coordinator.person.name.surname }}</td>
 						<td>{{ coordinator.person.birthDate | date: 'dd/MM/yyyy' }}</td>
 						<td>{{ coordinator.person.cpf }}</td>
 						<td>{{ coordinator.person.rg }}</td>
@@ -37,6 +34,13 @@
 							<ul>
 								<li ng-repeat="contact in coordinator.person.contacts">{{ contact.value }}</li>
 							</ul>
+						</td>
+						<td>
+							<a ng-click="editCoordinatorProfile(coordinator.id)">
+								<button class="btn btn-default" title="{{ 'COORDINATOR.EDIT' | translate }}">
+									<i class="fa fa-edit"></i>
+								</button>
+							</a>
 						</td>
 					</tr>
 				</tbody>

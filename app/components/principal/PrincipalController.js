@@ -20,19 +20,8 @@ angular.module('Principal')
 			$location.path('/principals/add');
 		};
 		
-		$scope.editPrincipal = function(principalId) {
-			$location.path('/principals/' + principalId);
-		};
-		
-		$scope.deletePrincipal = function(principalId) {
-			PrincipalFactory.delete({ id: principalId });
-			$scope.principals = PrincipalsFactory.query();
-		};
-		
-		$scope.calculateAge = function calculateAge(birthDate) {
-			var ageDifMs = Date.now() - new Date(birthDate).getTime();
-			var ageDate = new Date(ageDifMs);
-			return Math.abs(ageDate.getUTCFullYear() - 1970);
+		$scope.editPrincipalProfile = function(principalId) {
+			$location.path('/principal/' + principalId + '/edit/profile');
 		};
 	}
 ])
@@ -63,6 +52,43 @@ angular.module('Principal')
 			$scope.principal.person.birthDate = $filter('date')(new Date($scope.principal.person.birthDate), 'yyyy-MM-dd');
 			
 			PrincipalsFactory.create($scope.principal, function() {
+				$location.path('/principals');
+			});
+		}
+		
+		$scope.cancel = function() {
+			$location.path('/principals');
+		};
+	}
+])
+
+.controller('PrincipalEditProfileController',
+	['$rootScope', '$scope', 'PrincipalsFactory', 'PrincipalFactory', '$location', '$filter', '$routeParams',
+	function ($rootScope, $scope, PrincipalsFactory, PrincipalFactory, $location, $filter, $routeParams) {
+		$rootScope.title = $filter('translate')('PRINCIPAL.EDIT');
+		
+		$scope.principal = PrincipalFactory.show({id: $routeParams.id});
+		$scope.principal.$promise.then(function (result) {
+			$scope.principal.person.birthDate = $filter('date')($scope.principal.person.birthDate, 'dd/MM/yyyy');
+		});
+		
+		$scope.updatePrincipal = function () {
+			// Sanitize contacts.
+			$scope.contacts = [];
+			for (var contact in $scope.principal.person.contacts) {
+				if ($scope.principal.person.contacts[contact].value.indexOf('@') > -1)
+					$scope.principal.person.contacts[contact].type = 'EMAIL';
+				else
+					$scope.principal.person.contacts[contact].type = 'PHONE';
+				
+				$scope.contacts.push($scope.principal.person.contacts[contact]);
+			}
+			$scope.principal.person.contacts = $scope.contacts;
+			
+			// Convert date to Y-m-d format.
+			$scope.principal.person.birthDate = $filter('date')(new Date($scope.principal.person.birthDate), 'yyyy-MM-dd');
+			
+			PrincipalFactory.update($scope.principal, function() {
 				$location.path('/principals');
 			});
 		}

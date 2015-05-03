@@ -20,16 +20,13 @@
 						<th>{{ 'PERSON.CPF' | translate }}</th>
 						<th>{{ 'PERSON.RG' | translate }}</th>
 						<th>{{ 'PERSON.CONTACT' | translate }}</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="responsible in responsibles">
-						<td class="text-center">
-							<a href="/responsible/{{ responsible.person.id }}">
-								<img class="img-circle img-user media-object" src="assets/img/av1.png">
-							</a>
-						</td>
-						<td><a href="/responsible/{{ responsible.person.id }}">{{ responsible.person.name.name }} {{ responsible.person.name.surname }}</a></td>
+						<td class="text-center"><img class="img-circle img-user media-object" src="assets/img/av1.png"></td>
+						<td>{{ responsible.person.name.name }} {{ responsible.person.name.surname }}</td>
 						<td>{{ responsible.person.birthDate | date: 'dd/MM/yyyy' }}</td>
 						<td>{{ responsible.person.cpf }}</td>
 						<td>{{ responsible.person.rg }}</td>
@@ -37,6 +34,13 @@
 							<ul>
 								<li ng-repeat="contact in responsible.person.contacts">{{ contact.value }}</li>
 							</ul>
+						</td>
+						<td>
+							<a ng-click="editResponsibleProfile(responsible.id)">
+								<button class="btn btn-default" title="{{ 'RESPONSIBLE.EDIT' | translate }}">
+									<i class="fa fa-edit"></i>
+								</button>
+							</a>
 						</td>
 					</tr>
 				</tbody>
