@@ -68,6 +68,8 @@ angular.module('Student')
 		$scope.student = StudentFactory.show({id: $routeParams.id});
 		$scope.student.$promise.then(function (result) {
 			$scope.student.person.birthDate = $filter('date')($scope.student.person.birthDate, 'dd/MM/yyyy');
+			delete $scope.student.$promise;
+			delete $scope.student.$resolved;
 		});
 		
 		$scope.updateStudent = function () {
@@ -78,7 +80,7 @@ angular.module('Student')
 			// Convert date to Y-m-d format.
 			$scope.student.person.birthDate = $filter('date')(new Date($scope.student.person.birthDate), 'yyyy-MM-dd');
 			
-			StudentFactory.update($scope.student, function() {
+			StudentsFactory.update($scope.student, function() {
 				$location.path('/students');
 			});
 		}

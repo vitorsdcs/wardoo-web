@@ -6,7 +6,8 @@ angular.module('Student')
 	function($resource) {
 		return $resource('/wardoo/students', {}, {
 			query: { method: 'GET', isArray: true },
-			create: { method: 'POST' }
+			create: { method: 'POST' },
+			update: { method: 'PUT' }
 		});
 	}
 ])
@@ -15,7 +16,6 @@ angular.module('Student')
 	function($resource) {
 		return $resource('/wardoo/students/:id', {}, {
 			show: { method: 'GET' },
-			update: { method: 'PUT', params: {id: '@id'} },
 			delete: { method: 'DELETE', params: {id: '@id'} }
 		});
 	}

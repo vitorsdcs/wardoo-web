@@ -70,6 +70,8 @@ angular.module('Teacher')
 		$scope.teacher = TeacherFactory.show({id: $routeParams.id});
 		$scope.teacher.$promise.then(function (result) {
 			$scope.teacher.person.birthDate = $filter('date')($scope.teacher.person.birthDate, 'dd/MM/yyyy');
+			delete $scope.teacher.$promise;
+			delete $scope.teacher.$resolved;
 		});
 		
 		$scope.updateTeacher = function () {
@@ -88,7 +90,7 @@ angular.module('Teacher')
 			// Convert date to Y-m-d format.
 			$scope.teacher.person.birthDate = $filter('date')(new Date($scope.teacher.person.birthDate), 'yyyy-MM-dd');
 			
-			TeacherFactory.update($scope.teacher, function() {
+			TeachersFactory.update($scope.teacher, function() {
 				$location.path('/teachers');
 			});
 		}

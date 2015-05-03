@@ -70,6 +70,8 @@ angular.module('Coordinator')
 		$scope.coordinator = CoordinatorFactory.show({id: $routeParams.id});
 		$scope.coordinator.$promise.then(function (result) {
 			$scope.coordinator.person.birthDate = $filter('date')($scope.coordinator.person.birthDate, 'dd/MM/yyyy');
+			delete $scope.coordinator.$promise;
+			delete $scope.coordinator.$resolved;
 		});
 		
 		$scope.updateCoordinator = function () {
@@ -88,7 +90,7 @@ angular.module('Coordinator')
 			// Convert date to Y-m-d format.
 			$scope.coordinator.person.birthDate = $filter('date')(new Date($scope.coordinator.person.birthDate), 'yyyy-MM-dd');
 			
-			CoordinatorFactory.update($scope.coordinator, function() {
+			CoordinatorsFactory.update($scope.coordinator, function() {
 				$location.path('/coordinators');
 			});
 		}

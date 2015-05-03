@@ -70,6 +70,8 @@ angular.module('Responsible')
 		$scope.responsible = ResponsibleFactory.show({id: $routeParams.id});
 		$scope.responsible.$promise.then(function (result) {
 			$scope.responsible.person.birthDate = $filter('date')($scope.responsible.person.birthDate, 'dd/MM/yyyy');
+			delete $scope.responsible.$promise;
+			delete $scope.responsible.$resolved;
 		});
 		
 		$scope.updateResponsible = function () {
@@ -88,7 +90,7 @@ angular.module('Responsible')
 			// Convert date to Y-m-d format.
 			$scope.responsible.person.birthDate = $filter('date')(new Date($scope.responsible.person.birthDate), 'yyyy-MM-dd');
 			
-			ResponsibleFactory.update($scope.responsible, function() {
+			ResponsiblesFactory.update($scope.responsible, function() {
 				$location.path('/responsibles');
 			});
 		}

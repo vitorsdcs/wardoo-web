@@ -6,7 +6,8 @@ angular.module('Responsible')
 	function($resource) {
 		return $resource('/wardoo/responsibles', {}, {
 			query: { method: 'GET', isArray: true },
-			create: { method: 'POST' }
+			create: { method: 'POST' },
+			update: { method: 'PUT' }
 		});
 	}
 ])
@@ -15,7 +16,6 @@ angular.module('Responsible')
 	function($resource) {
 		return $resource('/wardoo/responsibles/:id', {}, {
 			show: { method: 'GET' },
-			update: { method: 'PUT', params: {id: '@id'} },
 			delete: { method: 'DELETE', params: {id: '@id'} }
 		});
 	}

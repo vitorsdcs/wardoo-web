@@ -70,6 +70,8 @@ angular.module('Principal')
 		$scope.principal = PrincipalFactory.show({id: $routeParams.id});
 		$scope.principal.$promise.then(function (result) {
 			$scope.principal.person.birthDate = $filter('date')($scope.principal.person.birthDate, 'dd/MM/yyyy');
+			delete $scope.principal.$promise;
+			delete $scope.principal.$resolved;
 		});
 		
 		$scope.updatePrincipal = function () {
@@ -88,7 +90,7 @@ angular.module('Principal')
 			// Convert date to Y-m-d format.
 			$scope.principal.person.birthDate = $filter('date')(new Date($scope.principal.person.birthDate), 'yyyy-MM-dd');
 			
-			PrincipalFactory.update($scope.principal, function() {
+			PrincipalsFactory.update($scope.principal, function() {
 				$location.path('/principals');
 			});
 		}
