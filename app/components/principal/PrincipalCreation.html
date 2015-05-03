@@ -114,6 +114,7 @@
 				<label for="school" class="col-md-2 control-label">{{ 'SCHOOL.TITLE' | translate }}</label>
 				<div class="col-md-10">
 					<select class="form-control" name="school" ng-model="principal.school.id" required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
 						<option value="1">Wardoo High School</option>
 					</select>
 					<div ng-show="principalcreation.school.$dirty && principalcreation.school.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>

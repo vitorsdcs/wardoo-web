@@ -8,6 +8,7 @@ angular.module('Principal', []);
 angular.module('Coordinator', []);
 angular.module('Teacher', []);
 angular.module('Responsible', []);
+angular.module('Student', []);
 
 angular.module('Wardoo', [
 	'Home',
@@ -18,6 +19,7 @@ angular.module('Wardoo', [
 	'Coordinator',
 	'Teacher',
 	'Responsible',
+	'Student',
     'ngRoute',
     'ngCookies',
 	'ngResource',
@@ -82,6 +84,16 @@ angular.module('Wardoo', [
 			.when('/responsibles/add', {
 				controller: 'ResponsibleCreationController',
 				templateUrl: 'app/components/responsible/ResponsibleCreation.html',
+			})
+			
+			.when('/students', {
+				controller: 'StudentListController',
+				templateUrl: 'app/components/student/StudentList.html',
+			})
+			
+			.when('/students/add', {
+				controller: 'StudentCreationController',
+				templateUrl: 'app/components/student/StudentCreation.html',
 			});
 		
 		$translateProvider
@@ -113,6 +125,7 @@ angular.module('Wardoo', [
 				'FORM.ERROR.CPF': 'This is not a valid CPF. Please input a valid CPF.',
 				'FORM.ERROR.EMAIL': 'This is not a valid email. Please input a valida email.',
 				'FORM.ERROR.PHONE': 'This is not a valid phone number. Please input a valid phone number.',
+				'FORM.SELECT': '- Select -',
 				'FORM.SAVE': 'Save',
 				'FORM.CANCEL': 'Cancel',
 				
@@ -163,6 +176,9 @@ angular.module('Wardoo', [
 				'RESPONSIBLE.LOADING': 'Loading responsibles...',
 				'RESPONSIBLE.EMPTY': 'No responsibles found.',
 				'RESPONSIBLE.CREATE': 'Create responsible',
+				'RESPONSIBLE.LEGAL': 'Legal responsible',
+				'RESPONSIBLE.FINANCIAL': 'Financial responsible',
+				'RESPONSIBLE.REMOVAL': 'Removal responsible',
 				
 				'STUDENT.TITLE': 'Students',
 				'STUDENT.SINGLE': 'Student',
@@ -170,6 +186,21 @@ angular.module('Wardoo', [
 				'STUDENT.LOADING': 'Loading students...',
 				'STUDENT.EMPTY': 'No students found.',
 				'STUDENT.CREATE': 'Create student',
+				
+				'PARENTAGE.TITLE': 'Parentage',
+				'PARENTAGE.FATHER': 'Father',
+				'PARENTAGE.MOTHER': 'Mother',
+				'PARENTAGE.GRANDFATHER': 'Grandfather',
+				'PARENTAGE.GRANDMOTHER': 'Grandmother',
+				'PARENTAGE.STEPFATHER': 'Stepfather',
+				'PARENTAGE.STEPMOTHER': 'Stepmother',
+				'PARENTAGE.BROTHER': 'Brother',
+				'PARENTAGE.SISTER': 'Sister',
+				'PARENTAGE.STEPBROTHER': 'Stepbrother',
+				'PARENTAGE.STEPSISTER': 'Stepsister',
+				'PARENTAGE.UNCLE': 'Uncle',
+				'PARENTAGE.AUNT': 'Aunt',
+				'PARENTAGE.COUSIN': 'Cousin',
 			})
 			.translations('pt-br', {
 				'HOME.TITLE': 'Início',
@@ -199,6 +230,7 @@ angular.module('Wardoo', [
 				'FORM.ERROR.CPF': 'Este CPF é inválido. Por favor, digite um CPF válido.',
 				'FORM.ERROR.EMAIL': 'Este não é um e-mail válido. Por favor, digite um e-mail válido.',
 				'FORM.ERROR.PHONE': 'Este não é um telefone válido. Por favor, digite um telefone válido.',
+				'FORM.SELECT': '- Selecione -',
 				'FORM.SAVE': 'Salvar',
 				'FORM.CANCEL': 'Cancelar',
 				
@@ -249,6 +281,9 @@ angular.module('Wardoo', [
 				'RESPONSIBLE.LOADING': 'Carregando responsáveis...',
 				'RESPONSIBLE.EMPTY': 'Nenhum responsável encontrado.',
 				'RESPONSIBLE.CREATE': 'Cadastrar responsável',
+				'RESPONSIBLE.LEGAL': 'Responsável legal',
+				'RESPONSIBLE.FINANCIAL': 'Responsável financeiro',
+				'RESPONSIBLE.REMOVAL': 'Responsável pela retirada',
 				
 				'STUDENT.TITLE': 'Alunos',
 				'STUDENT.SINGLE': 'Aluno',
@@ -256,6 +291,21 @@ angular.module('Wardoo', [
 				'STUDENT.LOADING': 'Carregando alunos...',
 				'STUDENT.EMPTY': 'Nenhum aluno encontrado.',
 				'STUDENT.CREATE': 'Cadastrar aluno',
+				
+				'PARENTAGE.TITLE': 'Parentesco',
+				'PARENTAGE.FATHER': 'Pai',
+				'PARENTAGE.MOTHER': 'Mãe',
+				'PARENTAGE.GRANDFATHER': 'Avô',
+				'PARENTAGE.GRANDMOTHER': 'Avó',
+				'PARENTAGE.STEPFATHER': 'Padrasto',
+				'PARENTAGE.STEPMOTHER': 'Madrasta',
+				'PARENTAGE.BROTHER': 'Irmão',
+				'PARENTAGE.SISTER': 'Irmã',
+				'PARENTAGE.STEPBROTHER': 'Meio-irmão',
+				'PARENTAGE.STEPSISTER': 'Meia-irmã',
+				'PARENTAGE.UNCLE': 'Tio',
+				'PARENTAGE.AUNT': 'Tia',
+				'PARENTAGE.COUSIN': 'Primo(a)',
 			});
 		$translateProvider.preferredLanguage('pt-br');
 		

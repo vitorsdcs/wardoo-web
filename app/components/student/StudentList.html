@@ -1,0 +1,44 @@
+<div class="panel">
+	<div class="panel-body">
+		<div class="pad-btm form-inline">
+			<div class="row">
+				<div class="col-sm-6 table-toolbar-left">
+					<a ng-click="createNewStudent()" class="btn btn-small btn-primary btn-labeled fa fa-plus">
+						<span>{{ 'STUDENT.ADD' | translate }}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="table-responsive">
+			<table class="table table-hover table-vcenter" ng-hide="empty">
+				<thead>
+					<tr>
+						<th class="min-width"></th<>
+						<th>{{ 'PERSON.NAME' | translate}}</th>
+						<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
+						<th>{{ 'RESPONSIBLE.LEGAL' | translate }}</th>
+						<th>{{ 'RESPONSIBLE.FINANCIAL' | translate }}</th>
+						<th>{{ 'RESPONSIBLE.REMOVAL' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="student in students">
+						<td class="text-center">
+							<a href="/student/{{ student.person.id }}">
+								<img class="img-circle img-user media-object" src="assets/img/av1.png">
+							</a>
+						</td>
+						<td><a href="/student/{{ student.person.id }}">{{ student.person.name.name }} {{ student.person.name.surname }}</a></td>
+						<td>{{ student.person.birthDate | date: 'dd/MM/yyyy' }}</td>
+						<td>{{ student.responsibles.legalResponsible.responsible.person.name.name }} {{ student.responsibles.legalResponsible.responsible.person.name.surname }}</td>
+						<td>{{ student.responsibles.financialResponsible.responsible.person.name.name }} {{ student.responsibles.financialResponsible.responsible.person.name.surname }}</td>
+						<td>{{ student.responsibles.removalResponsible.responsible.person.name.name }} {{ student.responsibles.removalResponsible.responsible.person.name.surname }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-show="loading">{{ 'STUDENT.LOADING' | translate }}</div>
+		<div ng-show="!loading && empty">{{ 'STUDENT.EMPTY' | translate }}</div>
+	</div>
+</div>
