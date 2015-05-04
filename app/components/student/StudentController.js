@@ -43,8 +43,6 @@ angular.module('Student')
 			// Convert date to Y-m-d format.
 			$scope.student.person.birthDate = $filter('date')(new Date($scope.student.person.birthDate), 'yyyy-MM-dd');
 			
-			console.dir($scope.student);
-			
 			StudentsFactory.create($scope.student, function() {
 				$location.path('/students');
 			});

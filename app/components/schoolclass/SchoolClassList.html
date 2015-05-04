@@ -1,0 +1,32 @@
+<div class="panel">
+	<div class="panel-body">
+		<div class="pad-btm form-inline">
+			<div class="row">
+				<div class="col-sm-6 table-toolbar-left">
+					<a ng-click="createNewSchoolClass()" class="btn btn-small btn-primary btn-labeled fa fa-plus">
+						<span>{{ 'SCHOOLCLASS.ADD' | translate }}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="table-responsive">
+			<table class="table table-hover table-vcenter" ng-hide="empty">
+				<thead>
+					<tr>
+						<th>{{ 'SCHOOLCLASS.LABEL' | translate}}</th>
+						<th>{{ 'TEACHER.RESPONSIBLE' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="schoolclass in schoolclasses">
+						<td>{{ schoolclass.identification.label }}</td>
+						<td>{{ schoolclass.responsibleTeacher.person.name.name }} {{ schoolclass.responsibleTeacher.person.name.surname }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-show="loading">{{ 'SCHOOLCLASS.LOADING' | translate }}</div>
+		<div ng-show="!loading && empty">{{ 'SCHOOLCLASS.EMPTY' | translate }}</div>
+	</div>
+</div>

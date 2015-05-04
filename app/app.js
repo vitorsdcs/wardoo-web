@@ -9,6 +9,7 @@ angular.module('Coordinator', []);
 angular.module('Teacher', []);
 angular.module('Responsible', []);
 angular.module('Student', []);
+angular.module('SchoolClass', []);
 
 angular.module('Wardoo', [
 	'Home',
@@ -20,6 +21,7 @@ angular.module('Wardoo', [
 	'Teacher',
 	'Responsible',
 	'Student',
+	'SchoolClass',
     'ngRoute',
     'ngCookies',
 	'ngResource',
@@ -119,6 +121,16 @@ angular.module('Wardoo', [
 			.when('/student/:id/edit/profile', {
 				controller: 'StudentEditProfileController',
 				templateUrl: 'app/components/student/StudentEditProfile.html',
+			})
+			
+			.when('/schoolclasses', {
+				controller: 'SchoolClassListController',
+				templateUrl: 'app/components/schoolclass/SchoolClassList.html',
+			})
+			
+			.when('/schoolclasses/add', {
+				controller: 'SchoolClassCreationController',
+				templateUrl: 'app/components/schoolclass/SchoolClassCreation.html',
 			});
 		
 		$translateProvider
@@ -197,6 +209,7 @@ angular.module('Wardoo', [
 				'TEACHER.EMPTY': 'No teachers found.',
 				'TEACHER.CREATE': 'Create teacher',
 				'TEACHER.EDIT': 'Edit teacher',
+				'TEACHER.RESPONSIBLE': 'Responsible teacher',
 				
 				'RESPONSIBLE.TITLE': 'Responsibles',
 				'RESPONSIBLE.SINGLE': 'Responsible',
@@ -217,6 +230,16 @@ angular.module('Wardoo', [
 				'STUDENT.CREATE': 'Create student',
 				'STUDENT.EDIT': 'Edit student',
 				'STUDENT.CODE': 'Code',
+				
+				'SCHOOLCLASS.TITLE': 'School Classes',
+				'SCHOOLCLASS.SINGLE': 'School Class',
+				'SCHOOLCLASS.ADD': 'Add school class',
+				'SCHOOLCLASS.LOADING': 'Loading school classes...',
+				'SCHOOLCLASS.EMPTY': 'No school classes found.',
+				'SCHOOLCLASS.CREATE': 'Create school class',
+				'SCHOOLCLASS.EDIT': 'Edit school class',
+				'SCHOOLCLASS.IDENTIFICATION': 'Identification',
+				'SCHOOLCLASS.LABEL': 'Label',
 				
 				'PARENTAGE.TITLE': 'Parentage',
 				'PARENTAGE.FATHER': 'Father',
@@ -308,6 +331,7 @@ angular.module('Wardoo', [
 				'TEACHER.EMPTY': 'Nenhum professor encontrado.',
 				'TEACHER.CREATE': 'Cadastrar professor',
 				'TEACHER.EDIT': 'Editar professor',
+				'TEACHER.RESPONSIBLE': 'Professor responsável',
 				
 				'RESPONSIBLE.TITLE': 'Responsáveis',
 				'RESPONSIBLE.SINGLE': 'Responsável',
@@ -328,6 +352,16 @@ angular.module('Wardoo', [
 				'STUDENT.CREATE': 'Cadastrar aluno',
 				'STUDENT.EDIT': 'Editar aluno',
 				'STUDENT.CODE': 'Matrícula',
+				
+				'SCHOOLCLASS.TITLE': 'Turmas',
+				'SCHOOLCLASS.SINGLE': 'Turma',
+				'SCHOOLCLASS.ADD': 'Adicionar turma',
+				'SCHOOLCLASS.LOADING': 'Carregando turmas...',
+				'SCHOOLCLASS.EMPTY': 'Nenhuma turma encontrada.',
+				'SCHOOLCLASS.CREATE': 'Cadastrar turma',
+				'SCHOOLCLASS.EDIT': 'Editar turma',
+				'SCHOOLCLASS.IDENTIFICATION': 'Identificação',
+				'SCHOOLCLASS.LABEL': 'Nome da turma',
 				
 				'PARENTAGE.TITLE': 'Parentesco',
 				'PARENTAGE.FATHER': 'Pai',
