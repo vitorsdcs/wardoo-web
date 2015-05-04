@@ -40,7 +40,7 @@ angular.module('Wardoo', [
 			
 			.when('/login', {
 				controller: 'LoginController',
-				templateUrl: 'app/components/authentication/LoginView.html',
+				templateUrl: 'app/components/auth/LoginView.html',
 			})
 			
 			.when('/logout', {
@@ -125,12 +125,12 @@ angular.module('Wardoo', [
 			
 			.when('/schoolclasses', {
 				controller: 'SchoolClassListController',
-				templateUrl: 'app/components/schoolclass/SchoolClassList.html',
+				templateUrl: 'app/components/school/classes/SchoolClassList.html',
 			})
 			
 			.when('/schoolclasses/add', {
 				controller: 'SchoolClassCreationController',
-				templateUrl: 'app/components/schoolclass/SchoolClassCreation.html',
+				templateUrl: 'app/components/school/classes/SchoolClassCreation.html',
 			});
 		
 		$translateProvider
