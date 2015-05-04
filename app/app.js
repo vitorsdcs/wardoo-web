@@ -355,7 +355,7 @@ angular.module('Wardoo', [
 				
 				'SCHOOLCLASS.TITLE': 'Turmas',
 				'SCHOOLCLASS.SINGLE': 'Turma',
-				'SCHOOLCLASS.ADD': 'Adicionar turma',
+				'SCHOOLCLASS.ADD': 'Cadastrar turma',
 				'SCHOOLCLASS.LOADING': 'Carregando turmas...',
 				'SCHOOLCLASS.EMPTY': 'Nenhuma turma encontrada.',
 				'SCHOOLCLASS.CREATE': 'Cadastrar turma',
