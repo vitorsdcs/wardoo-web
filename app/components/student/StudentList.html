@@ -15,6 +15,7 @@
 				<thead>
 					<tr>
 						<th class="min-width"></th<>
+						<th>{{ 'STUDENT.CODE' | translate }}</th>
 						<th>{{ 'PERSON.NAME' | translate}}</th>
 						<th>{{ 'PERSON.BIRTHDATE' | translate }}</th>
 						<th>{{ 'RESPONSIBLE.LEGAL' | translate }}</th>
@@ -26,6 +27,7 @@
 				<tbody>
 					<tr ng-repeat="student in students">
 						<td class="text-center"><img class="img-circle img-user media-object" src="assets/img/av1.png"></td>
+						<td>{{ student.code }}
 						<td>{{ student.person.name.name }} {{ student.person.name.surname }}</td>
 						<td>{{ student.person.birthDate | date: 'dd/MM/yyyy' }}</td>
 						<td>{{ student.responsibles.legalResponsible.responsible.person.name.name }} {{ student.responsibles.legalResponsible.responsible.person.name.surname }}</td>

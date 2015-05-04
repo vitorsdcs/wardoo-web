@@ -1,30 +1,6 @@
 <form name="studentcreation" class="form-horizontal">
 	<div class="panel">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ 'CREDENTIAL.TITLE' | translate }}</h3>
-		</div>
-		
-		<div class="panel-body">
-			<div class="form-group" ng-class="{'has-error': studentcreation.username.$dirty && (studentcreation.username.$error.required || studentcreation.username.$error.maxlength)}">
-				<label for="username" class="col-md-2 control-label">{{ 'CREDENTIAL.USERNAME' | translate }}</label>
-				<div class="col-md-10">
-					<input type="text" id="username" name="username" class="form-control" ng-class="{'ng-filled': student.credential.username.length > 0}" ng-model="student.user.credential.username" ng-maxlength=255 required />
-					<div ng-show="studentcreation.username.$dirty && studentcreation.username.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
-					<div ng-show="studentcreation.username.$dirty && studentcreation.username.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
-				</div>
-			</div>
-
-			<div class="form-group" ng-class="{'has-error': studentcreation.password.$dirty && (studentcreation.password.$error.required || studentcreation.password.$error.maxlength)}">
-				<label for="password" class="col-md-2 control-label">{{ 'CREDENTIAL.PASSWORD' | translate }}</label>
-				<div class="col-md-10">
-					<input type="password" id="password" name="password" class="form-control" ng-class="{'ng-filled': student.credential.password.length > 0}" ng-model="student.user.credential.password" ng-maxlength=255 required />
-					<div ng-show="studentcreation.password.$dirty && studentcreation.password.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
-					<div ng-show="studentcreation.password.$dirty && studentcreation.password.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="panel-heading">
 			<h3 class="panel-title">{{ 'PERSON.PERSONALINFO' | translate }}</h3>
 		</div>
 		

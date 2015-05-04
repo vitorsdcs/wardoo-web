@@ -38,11 +38,12 @@ angular.module('Student')
 		
 		$scope.createNewStudent = function () {
 			// Add role.
-			$scope.student.user['role'] = 'STUDENT';
-			$scope.student.user['school'] = { 'id': $scope.student.school.id };
+			$scope.student.user = { 'role': 'STUDENT', 'school': { 'id': $scope.student.school.id } }
 			
 			// Convert date to Y-m-d format.
 			$scope.student.person.birthDate = $filter('date')(new Date($scope.student.person.birthDate), 'yyyy-MM-dd');
+			
+			console.dir($scope.student);
 			
 			StudentsFactory.create($scope.student, function() {
 				$location.path('/students');

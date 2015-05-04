@@ -216,6 +216,7 @@ angular.module('Wardoo', [
 				'STUDENT.EMPTY': 'No students found.',
 				'STUDENT.CREATE': 'Create student',
 				'STUDENT.EDIT': 'Edit student',
+				'STUDENT.CODE': 'Code',
 				
 				'PARENTAGE.TITLE': 'Parentage',
 				'PARENTAGE.FATHER': 'Father',
@@ -326,6 +327,7 @@ angular.module('Wardoo', [
 				'STUDENT.EMPTY': 'Nenhum aluno encontrado.',
 				'STUDENT.CREATE': 'Cadastrar aluno',
 				'STUDENT.EDIT': 'Editar aluno',
+				'STUDENT.CODE': 'Matrícula',
 				
 				'PARENTAGE.TITLE': 'Parentesco',
 				'PARENTAGE.FATHER': 'Pai',
