@@ -10,6 +10,7 @@ angular.module('Teacher', []);
 angular.module('Responsible', []);
 angular.module('Student', []);
 angular.module('SchoolClass', []);
+angular.module('Degree', []);
 
 angular.module('Wardoo', [
 	'Home',
@@ -22,6 +23,7 @@ angular.module('Wardoo', [
 	'Responsible',
 	'Student',
 	'SchoolClass',
+	'Degree',
     'ngRoute',
     'ngCookies',
 	'ngResource',
@@ -255,6 +257,22 @@ angular.module('Wardoo', [
 				'PARENTAGE.UNCLE': 'Uncle',
 				'PARENTAGE.AUNT': 'Aunt',
 				'PARENTAGE.COUSIN': 'Cousin',
+				
+				'PRIMARY_SCHOOL': 'Primary School',
+				'ELEMENTARY_SCHOOL': 'Elementary School',
+				'HIGH_SCHOOL': 'High School',
+				'DEGREE.TITLE': 'Degree',
+				'DEGREELEVEL.TITLE': 'Degree Level',
+				'DEGREELEVEL.FIRST': '1st',
+				'DEGREELEVEL.SECOND': '2nd',
+				'DEGREELEVEL.THIRD': '3rd',
+				'DEGREELEVEL.FOURTH': '4th',
+				'DEGREELEVEL.FIFTH': '5th',
+				'DEGREELEVEL.SIXTH': '6th',
+				'DEGREELEVEL.SEVENTH': '7th',
+				'DEGREELEVEL.EIGHTH': '8th',
+				'DEGREELEVEL.NINTH': '9th',
+				'DEGREEIDENTIFIER.TITLE': 'Identifier',
 			})
 			.translations('pt-br', {
 				'HOME.TITLE': 'Início',
@@ -377,6 +395,22 @@ angular.module('Wardoo', [
 				'PARENTAGE.UNCLE': 'Tio',
 				'PARENTAGE.AUNT': 'Tia',
 				'PARENTAGE.COUSIN': 'Primo(a)',
+				
+				'PRIMARY_SCHOOL': 'Fundamental 1',
+				'ELEMENTARY_SCHOOL': 'Fundamental 2',
+				'HIGH_SCHOOL': 'Médio',
+				'DEGREE.TITLE': 'Ensino',
+				'DEGREELEVEL.TITLE': 'Série',
+				'DEGREELEVEL.FIRST': '1º',
+				'DEGREELEVEL.SECOND': '2º',
+				'DEGREELEVEL.THIRD': '3º',
+				'DEGREELEVEL.FOURTH': '4º',
+				'DEGREELEVEL.FIFTH': '5º',
+				'DEGREELEVEL.SIXTH': '6º',
+				'DEGREELEVEL.SEVENTH': '7º',
+				'DEGREELEVEL.EIGHTH': '8º',
+				'DEGREELEVEL.NINTH': '9º',
+				'DEGREEIDENTIFIER.TITLE': 'Identificador',
 			});
 		$translateProvider.preferredLanguage('pt-br');
 		

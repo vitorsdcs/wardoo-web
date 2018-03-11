@@ -23,8 +23,8 @@ angular.module('SchoolClass')
 ])
 
 .controller('SchoolClassCreationController',
-	['$rootScope', '$scope', 'SchoolClassesFactory', 'TeachersFactory', '$location', '$filter',
-	function ($rootScope, $scope, SchoolClassesFactory, TeachersFactory, $location, $filter) {
+	['$rootScope', '$scope', 'SchoolClassesFactory', 'TeachersFactory', 'DegreesFactory', '$location', '$filter',
+	function ($rootScope, $scope, SchoolClassesFactory, TeachersFactory, DegreesFactory, $location, $filter) {
 		$rootScope.title = $filter('translate')('SCHOOLCLASS.CREATE');
 		
 		$scope.teachers = TeachersFactory.query();
@@ -32,13 +32,40 @@ angular.module('SchoolClass')
 			$scope.teachers = result;
 		});
 		
+		$scope.schools = [
+			{
+				id: 1,
+				name: "Wardoo High School",
+			},
+		];
+		
+		$scope.degrees = DegreesFactory.query({ id: $scope.schools[0].id });
+		$scope.degrees.$promise.then(function (result) {
+			$scope.degrees = result;
+			console.dir($scope.degrees);
+		});
+		
+		$scope.identifiers = [
+			{
+				id: "A",
+			},
+			{
+				id: "B",
+			},
+			{
+				id: "C",
+			},
+			{
+				id: "D",
+			},
+		];
+		
 		$scope.createNewSchoolClass = function () {
-			$scope.schoolclass.identification['degree'] = { 'id': 1 };
-			
-			SchoolClassesFactory.create($scope.schoolclass, function() {
+			console.log(JSON.stringify($scope.schoolclass));
+			/*SchoolClassesFactory.create($scope.schoolclass, function() {
 				$location.path('/schoolclasses');
-			});
-		}
+			});*/
+		};
 		
 		$scope.cancel = function() {
 			$location.path('/schoolclasses');

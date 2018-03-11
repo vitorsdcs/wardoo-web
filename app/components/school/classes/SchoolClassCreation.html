@@ -5,35 +5,79 @@
 		</div>
 		
 		<div class="panel-body">
-			<div class="form-group" ng-class="{'has-error': schoolclasscreation.label.$dirty && (schoolclasscreation.label.$error.required || schoolclasscreation.label.$error.maxlength)}">
-				<label for="label" class="col-md-2 control-label">{{ 'SCHOOLCLASS.LABEL' | translate }}</label>
+			<!-- Degree -->
+			<div class="form-group" ng-class="{'has-error': schoolclasscreation.degree.$dirty && schoolclasscreation.degree.$error.required}">
+				<label for="degree" class="col-md-2 control-label">{{ 'DEGREE.TITLE' | translate }}</label>
 				<div class="col-md-10">
-					<input type="text" id="label" name="label" class="form-control" ng-class="{'ng-filled': schoolclass.identification.label.length > 0}" ng-model="schoolclass.identification.label" ng-maxlength=255 required />
-					<div ng-show="schoolclasscreation.label.$dirty && schoolclasscreation.label.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
-					<div ng-show="schoolclasscreation.label.$dirty && schoolclasscreation.label.$error.maxlength"><small class="help-block">{{ 'FORM.ERROR.MAXLENGTH' | translate: '{num: 255}' }}</small></div>
+					<select
+						class="form-control"
+						name="degree"
+						ng-change="schoolclass.identification.degreelevel = ''"
+						ng-model="schoolclass.identification.degree"
+						ng-options="d.degree | translate for d in degrees track by d.degree"
+						required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+					</select>
+					<div ng-show="schoolclasscreation.degree.$dirty && schoolclasscreation.degree.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<!-- Degree level -->
+			<div class="form-group" ng-class="{'has-error': schoolclasscreation.degreelevel.$dirty && schoolclasscreation.degreelevel.$error.required}">
+				<label for="degreelevel" class="col-md-2 control-label">{{ 'DEGREELEVEL.TITLE' | translate }}</label>
+				<div class="col-md-10">
+					<select
+						class="form-control"
+						name="degreelevel"
+						ng-model="schoolclass.identification.degreelevel"
+						ng-options="dl.level for dl in degreeLevels | filter: {degree: schoolclass.identification.degree.degree} track by dl.id"
+						required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+					</select>
+					<div ng-show="schoolclasscreation.degreelevel.$dirty && schoolclasscreation.degreelevel.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
+				</div>
+			</div>
+			
+			<!-- Degree level identifier -->
+			<div class="form-group" ng-class="{'has-error': schoolclasscreation.identifier.$dirty && schoolclasscreation.identifier.$error.required}">
+				<label for="identifier" class="col-md-2 control-label">{{ 'DEGREEIDENTIFIER.TITLE' | translate }}</label>
+				<div class="col-md-10">
+					<select
+						class="form-control"
+						name="identifier"
+						ng-model="schoolclass.identification.identifier"
+						ng-options="i.id for i in identifiers track by i.id"
+						required>
+						<option value="">{{ 'FORM.SELECT' | translate }}</option>
+					</select>
+					<div ng-show="schoolclasscreation.identifier.$dirty && schoolclasscreation.identifier.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
 				</div>
 			</div>
 		</div>
 		
+		<!-- Responsible teacher -->
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ 'TEACHER.RESPONSIBLE' | translate }}</h3>
 		</div>
 		
 		<div class="panel-body">
 			<div class="form-group" ng-class="{'has-error': schoolclasscreation.responsibleTeacher.$dirty && schoolclasscreation.responsibleTeacher.$error.required}">
-				<label for="responsibleTeacher" class="col-md-2 control-label">{{ 'RESPONSIBLE.LEGAL' | translate }}</label>
+				<label for="responsibleTeacher" class="col-md-2 control-label">{{ 'TEACHER.RESPONSIBLE' | translate }}</label>
 				<div class="col-md-10">
-					<select class="form-control" name="responsibleTeacher" ng-model="schoolclass.responsibleTeacher.id" required>
+					<select
+						class="form-control"
+						name="responsibleTeacher"
+						ng-model="schoolclass.responsibleTeacher"
+						ng-options="t.person.name.name + ' ' + t.person.name.surname for t in teachers track by t.id"
+						required>
 						<option value="">{{ 'FORM.SELECT' | translate }}</option>
-						<option value="{{ teacher.id }}" ng-repeat="teacher in teachers">
-							{{ teacher.person.name.name }} {{ teacher.person.name.surname }}
-						</option>
 					</select>
 					<div ng-show="schoolclasscreation.responsibleTeacher.$dirty && schoolclasscreation.responsibleTeacher.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
 				</div>
 			</div>
 		</div>
 		
+		<!-- School -->
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ 'SCHOOL.TITLE' | translate }}</h3>
 		</div>
@@ -42,15 +86,20 @@
 			<div class="form-group" ng-class="{'has-error': schoolclasscreation.school.$dirty && schoolclasscreation.school.$error.required}">
 				<label for="school" class="col-md-2 control-label">{{ 'SCHOOL.TITLE' | translate }}</label>
 				<div class="col-md-10">
-					<select class="form-control" name="school" ng-model="schoolclass.school.id" required>
+					<select
+						class="form-control"
+						name="school"
+						ng-model="schoolclass.school"
+						ng-options="s.name for s in schools track by s.id"
+						required>
 						<option value="">{{ 'FORM.SELECT' | translate }}</option>
-						<option value="1">Wardoo High School</option>
 					</select>
 					<div ng-show="schoolclasscreation.school.$dirty && schoolclasscreation.school.$error.required"><small class="help-block">{{ 'FORM.ERROR.REQUIRED' | translate }}</small></div>
 				</div>
 			</div>
 		</div>
-	
+		
+		<!-- Actions -->
 		<div class="panel-footer">
 			<a ng-click="createNewSchoolClass()" class="btn btn-small btn-success" ng-disabled="schoolclasscreation.$invalid">{{ 'FORM.SAVE' | translate }}</a>
 			<a ng-click="cancel()" class="btn btn-small btn-default">{{ 'FORM.CANCEL' | translate }}</a>
